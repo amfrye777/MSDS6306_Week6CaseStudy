@@ -22,7 +22,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT
 ### Required Packages
 
 This RMD requires the following R packages to run: \* downloader \*
-digest \* formattable
+digest \* formattable \* plyr \* ggplot2
 
 If you do not currently have installed any of these packages, please
 uncomment the install.packages lines below before knitting this file.
@@ -30,10 +30,14 @@ uncomment the install.packages lines below before knitting this file.
     #install.packages("downloader")
     #install.packages("digest")
     #install.packages("formattable")
+    #install.packages("plyr")
+    #install.packages("ggplot2")
 
     library(downloader)
     library(digest)
     library(formattable)
+    library(plyr)
+    library(ggplot2)
 
 Data Load
 =========
@@ -2608,7 +2612,7 @@ to append these notes to the appropriate records.
 </table>
 
 Our USDollars and Ranking variables should be classified as an integer.
-Lets remove the comma's and convert to a numberic value.
+Lets remove the comma's and convert to a numeric value.
 
     #Remove commas and convert USDollars to Numeric
     Products$USDollars<-as.numeric(gsub(",","",Products$USDollars))
@@ -2975,110 +2979,187 @@ with 189 records which Merged successfully.
 
 #### Sort the data frame in ascending order by GDP rank (so United States is last). What is the 13th country in the resulting data frame?
 
-    library("downloader")
+    ##Sort the data ascending by GDP Ranking
+    Products_M_Education<-arrange(Products_M_Education,Products_M_Education$USDollars)
+    formattable(Products_M_Education[13,])
 
-    ## Load CSV File
-    url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+<table style="width:1128%;">
+<colgroup>
+<col width="5%" />
+<col width="18%" />
+<col width="12%" />
+<col width="29%" />
+<col width="15%" />
+<col width="8%" />
+<col width="29%" />
+<col width="29%" />
+<col width="37%" />
+<col width="25%" />
+<col width="19%" />
+<col width="31%" />
+<col width="36%" />
+<col width="34%" />
+<col width="20%" />
+<col width="40%" />
+<col width="47%" />
+<col width="40%" />
+<col width="29%" />
+<col width="43%" />
+<col width="23%" />
+<col width="48%" />
+<col width="44%" />
+<col width="23%" />
+<col width="43%" />
+<col width="45%" />
+<col width="70%" />
+<col width="40%" />
+<col width="38%" />
+<col width="33%" />
+<col width="26%" />
+<col width="41%" />
+<col width="20%" />
+<col width="15%" />
+<col width="29%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">CountryCode</th>
+<th align="right">Ranking</th>
+<th align="right">Economy</th>
+<th align="right">USDollars</th>
+<th align="right">Note</th>
+<th align="right">Long.Name</th>
+<th align="right">Income.Group</th>
+<th align="right">Region</th>
+<th align="right">Lending.category</th>
+<th align="right">Other.groups</th>
+<th align="right">Currency.Unit</th>
+<th align="right">Latest.population.census</th>
+<th align="right">Latest.household.survey</th>
+<th align="right">Special.Notes</th>
+<th align="right">National.accounts.base.year</th>
+<th align="right">National.accounts.reference.year</th>
+<th align="right">System.of.National.Accounts</th>
+<th align="right">SNA.price.valuation</th>
+<th align="right">Alternative.conversion.factor</th>
+<th align="right">PPP.survey.year</th>
+<th align="right">Balance.of.Payments.Manual.in.use</th>
+<th align="right">External.debt.Reporting.status</th>
+<th align="right">System.of.trade</th>
+<th align="right">Government.Accounting.concept</th>
+<th align="right">IMF.data.dissemination.standard</th>
+<th align="right">Source.of.most.recent.Income.and.expenditure.data</th>
+<th align="right">Vital.registration.complete</th>
+<th align="right">Latest.agricultural.census</th>
+<th align="right">Latest.industrial.data</th>
+<th align="right">Latest.trade.data</th>
+<th align="right">Latest.water.withdrawal.data</th>
+<th align="right">X2.alpha.code</th>
+<th align="right">WB.2.code</th>
+<th align="right">Table.Name</th>
+<th align="right">Short.Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">13</td>
+<td align="right">KNA</td>
+<td align="right">178</td>
+<td align="right">St. Kitts and Nevis</td>
+<td align="right">767</td>
+<td align="right"></td>
+<td align="right">St. Kitts and Nevis</td>
+<td align="right">Upper middle income</td>
+<td align="right">Latin America &amp; Caribbean</td>
+<td align="right">IBRD</td>
+<td align="right"></td>
+<td align="right">East Caribbean dollar</td>
+<td align="right">2001</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1990</td>
+<td align="right">NA</td>
+<td align="right">1993</td>
+<td align="right">VAB</td>
+<td align="right"></td>
+<td align="right">NA</td>
+<td align="right">BPM5</td>
+<td align="right">Preliminary</td>
+<td align="right">General</td>
+<td align="right">Consolidated</td>
+<td align="right">GDDS</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">NA</td>
+<td align="right">2007</td>
+<td align="right">NA</td>
+<td align="right">KN</td>
+<td align="right">KN</td>
+<td align="right">St. Kitts and Nevis</td>
+<td align="right">St. Kitts and Nevis</td>
+</tr>
+</tbody>
+</table>
 
-    download(url,destfile="Products.csv")
-
-    list.files()
-
-    ## [1] "Products.csv"  "Question1.RMD" "Question2.RMD" "Question3.RMD"
-    ## [5] "Question4.RMD" "Question5.RMD"
-
-    Products <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
-
-    head(Products)
-
-    ##    V1                          V2 V3            V4           V5 V6 V7 V8
-    ## 1     Gross domestic product 2012 NA                               NA NA
-    ## 2                                 NA                               NA NA
-    ## 3                                 NA               (millions of    NA NA
-    ## 4                         Ranking NA       Economy  US dollars)    NA NA
-    ## 5                                 NA                               NA NA
-    ## 6 USA                           1 NA United States  16,244,600     NA NA
-    ##   V9 V10
-    ## 1 NA  NA
-    ## 2 NA  NA
-    ## 3 NA  NA
-    ## 4 NA  NA
-    ## 5 NA  NA
-    ## 6 NA  NA
+The 13th lowest ranked country by USD is St. Kitts and Nevis (KNA)
+coming in at 178.
 
 ### Question 3
 
-#### 3 What are the average GDP rankings for the "High income: OECD" and "High income: nonOECD" groups?
+#### What are the average GDP rankings for the "High income: OECD" and "High income: nonOECD" groups?
 
-    library("downloader")
+    attach(Products_M_Education)
+    P_M_E_AvgIncomeByGroup<-aggregate(Products_M_Education[,c(2,4)],by=list(Income.Group), FUN = mean, na.rm=TRUE)
+    detach(Products_M_Education)
 
-    ## Load CSV File
-    url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+    P_M_E_AvgIncomeByGroup<-arrange(P_M_E_AvgIncomeByGroup,desc(P_M_E_AvgIncomeByGroup$USDollars))
 
-    download(url,destfile="Products.csv")
+    formattable(P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",])
 
-    list.files()
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Group.1</th>
+<th align="right">Ranking</th>
+<th align="right">USDollars</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">High income: OECD</td>
+<td align="right">32.96667</td>
+<td align="right">1483917.1</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="right">High income: nonOECD</td>
+<td align="right">91.91304</td>
+<td align="right">104349.8</td>
+</tr>
+</tbody>
+</table>
 
-    ## [1] "Products.csv"  "Question1.RMD" "Question2.RMD" "Question3.RMD"
-    ## [5] "Question4.RMD" "Question5.RMD"
-
-    Products <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
-
-    head(Products)
-
-    ##    V1                          V2 V3            V4           V5 V6 V7 V8
-    ## 1     Gross domestic product 2012 NA                               NA NA
-    ## 2                                 NA                               NA NA
-    ## 3                                 NA               (millions of    NA NA
-    ## 4                         Ranking NA       Economy  US dollars)    NA NA
-    ## 5                                 NA                               NA NA
-    ## 6 USA                           1 NA United States  16,244,600     NA NA
-    ##   V9 V10
-    ## 1 NA  NA
-    ## 2 NA  NA
-    ## 3 NA  NA
-    ## 4 NA  NA
-    ## 5 NA  NA
-    ## 6 NA  NA
+After calculating Mean Ranks and USDollars(in Millions), we find that
+the High income: OECD Income Group's average ranking is much higher at
+32.96667 and average USDollars of $1,483,917.10(Million) compared to a
+ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 ### Question 4
 
-#### 4 Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
+#### Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
 
-    library("downloader")
+    ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Group))+ geom_bar(stat="identity") + ggtitle("GDP by Country")+theme(axis.text.x=element_text(angle=90,hjust=1))
 
-    ## Load CSV File
-    url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
-
-    download(url,destfile="Products.csv")
-
-    list.files()
-
-    ## [1] "Products.csv"  "Question1.RMD" "Question2.RMD" "Question3.RMD"
-    ## [5] "Question4.RMD" "Question5.RMD"
-
-    Products <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
-
-    head(Products)
-
-    ##    V1                          V2 V3            V4           V5 V6 V7 V8
-    ## 1     Gross domestic product 2012 NA                               NA NA
-    ## 2                                 NA                               NA NA
-    ## 3                                 NA               (millions of    NA NA
-    ## 4                         Ranking NA       Economy  US dollars)    NA NA
-    ## 5                                 NA                               NA NA
-    ## 6 USA                           1 NA United States  16,244,600     NA NA
-    ##   V9 V10
-    ## 1 NA  NA
-    ## 2 NA  NA
-    ## 3 NA  NA
-    ## 4 NA  NA
-    ## 5 NA  NA
-    ## 6 NA  NA
+![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4-1.png)<!-- -->
 
 ### Question 5
 
-#### 5 Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
+#### Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
 
     library("downloader")
 
