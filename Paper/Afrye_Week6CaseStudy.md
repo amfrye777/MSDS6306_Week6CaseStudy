@@ -38,31 +38,27 @@ uncomment the install.packages lines below before knitting this file.
 Data Load
 =========
 
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT
+The Data utilized for this study is sourced from data.worldbank.org
+(specific file download links to be provided below). The below secions
+will walk through loading the data and verifying that the data values
+match the original research files.
 
 ### Products Data Load
-
-### Load the Product Data File
 
 The Gross Domestic Product data for the 190 ranked countries are are
 found
 [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv).
+
+\*\*Data <Notes:**> *"Year to year changes in the nominal level of
+output or income of an economy are affected by a combination of forces:
+real growth, price inflation, and exchange rates. Changes in any of the
+three can affect an economy's relative size and, therefore, its ranking
+in comparison to other economies. Of the rankings presented here,
+nominal GDP, perhaps the most familiar measure of aggregate economic
+activity, is most subject to price and exchange rate effects. Rankings
+are based on available data only."*
+[http://data.worldbank.org](http://data.worldbank.org/data-catalog/GDP-ranking-table)
+
 Lets load this data from it's source if you do not already have this
 data file in the DataLoad Directory.
 
@@ -266,17 +262,16 @@ Lets review the first 10 records of this file:
 
 ### Education Data Load
 
-### Load the Education Data File
-
-*"The World Bank EdStats All Indicator Query holds around 3,000
-internationally comparable indicators that describe education access,
-progression, completion, literacy, teachers, population, and
-expenditures. The indicators cover the education cycle from pre-primary
-to vocational and tertiary education."*
-[Data.worldbank.org](http://data.worldbank.org/data-catalog/ed-stats)
-
 The Education data are are found
 [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv).
+
+\*\*Data <Notes:**> *"The World Bank EdStats All Indicator Query holds
+around 3,000 internationally comparable indicators that describe
+education access, progression, completion, literacy, teachers,
+population, and expenditures. The indicators cover the education cycle
+from pre-primary to vocational and tertiary education."*
+[Data.worldbank.org](http://data.worldbank.org/data-catalog/ed-stats)
+
 Lets load this data from it's source if you do not already have this
 data file in the DataLoad Directory.
 
