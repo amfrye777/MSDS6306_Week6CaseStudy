@@ -1,0 +1,23 @@
+---
+title: "Question1"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+```{R Q1}
+##Merge the Data
+Products_M_Education<-merge(Products,Education,by="CountryCode", all=TRUE)
+formattable(head(Products_M_Education))
+
+##How Many Records Did Not Match?
+nrow(Products_M_Education[Products_M_Education$Ranking=='' | Products_M_Education$Income.Group=='' | is.na(Products_M_Education$Ranking)==TRUE | is.na(Products_M_Education$Income.Group)==TRUE,])
+
+##How Many Records Do Match?
+nrow(Products_M_Education[Products_M_Education$Ranking!='' & Products_M_Education$Income.Group!='' & is.na(Products_M_Education$Ranking)==FALSE & is.na(Products_M_Education$Income.Group)==FALSE,])
+
+##Remove non-Matches from Dataset
+Products_M_Education<-Products_M_Education[Products_M_Education$Ranking!='' & Products_M_Education$Income.Group!='' & is.na(Products_M_Education$Ranking)==FALSE & is.na(Products_M_Education$Income.Group)==FALSE,]
+```
+
+After Merging the data, we find 22 records which did not match on CountryCode. If we remove the non-matches from the dataset, we are left with 189 records which Merged successfully.

@@ -1,0 +1,14 @@
+---
+title: "CleanEducation"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+Similar to our cleanup in the Product Data, lets search for and remove any NA or Blank values found in CountryCode or Income.Group.
+
+```{R CleanEducationBlanks}
+## Find and remove records with blank values for CountryCode or Income.Group
+nrow(EducationRaw[EducationRaw$CountryCode=='' | EducationRaw$Income.Group=='',])
+Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',]
+```

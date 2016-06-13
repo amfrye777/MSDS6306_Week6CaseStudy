@@ -1,0 +1,65 @@
+---
+title: "LoadProduct"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+The Gross Domestic Product data for the 190 ranked countries are are found [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv). 
+
+**Data Notes**
+
+*"Year to year changes in the nominal level of output or income of an economy are affected by a combination of forces: real growth, price inflation, and exchange rates. Changes in any of the three can affect an economy's relative size and, therefore, its ranking in comparison to other economies. Of the rankings presented here, nominal GDP, perhaps the most familiar measure of aggregate economic activity, is most subject to price and exchange rate effects. Rankings are based on available data only."* [http://data.worldbank.org](http://data.worldbank.org/data-catalog/GDP-ranking-table)
+
+Lets load this data from it's source if you do not already have this data file in the DataLoad Directory. 
+
+```{R DownloadProducts.csv}
+setwd(DataLoad)
+
+##Only download the file fresh if the file does not exist
+if (file.exists("Products.csv") ==FALSE) {
+  ## Download CSV File
+  url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+  download(url, destfile = "Products.csv")
+}  
+
+#Verify file exists in DataLoad Directory
+list.files()
+```
+
+If the File's Data SHA1 HASH value does not match original research, lets re-load it.
+
+```{r VerifySHA1_and_LoadProducts}
+##Load Products.csv into ProductsRaw data.frame
+ProductsRaw <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
+
+## Ensure that the Products.csv file's data sha1 HASH value matches that of original research
+## Define Data SHA1 HASH
+SHAHASHProduct <- digest(ProductsRaw, algo="sha1")
+  
+## If file's data does not match original research, download file fresh and check again
+if (SHAHASHProduct != "e6521fbc90c5a0991db48091c0d1967bbc856095") {
+  url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+  download(url, destfile = "Products.csv")
+  
+  ProductsRaw <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
+  
+  ## Define new Data SHA1 HASH
+  SHAHASHProduct <- digest(ProductsRaw, algo="sha1")
+  
+  ## If file's data still does not match, STOP BUILD WITH ERRORS
+  if (SHAHASHProduct != "e6521fbc90c5a0991db48091c0d1967bbc856095") {
+
+  stop("File SHA1 HASH Value does not match original research. Valid SHA1 HASH value of data = \"e6521fbc90c5a0991db48091c0d1967bbc856095\"")
+
+  }
+}
+
+```
+
+Lets review the first 10 and records 232 - 252 of this file:
+
+```{r HeadProductsRaw}
+formattable(head(ProductsRaw,10))
+formattable(ProductsRaw[232:252,])
+```

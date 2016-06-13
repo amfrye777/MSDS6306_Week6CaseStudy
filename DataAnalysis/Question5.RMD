@@ -1,0 +1,20 @@
+---
+title: "Question5"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+```{R Q5}
+#Split Data into 5 equal quartiles
+Products_M_Education$quartile <- ntile(Products_M_Education$Ranking, 5) 
+
+#Count Records
+nrow(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",])
+
+#View Records
+formattable(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quartile")])
+
+```
+
+There are 5 countries which are both classified as Lower middle income, and fall under the top 20% GDP ranking.

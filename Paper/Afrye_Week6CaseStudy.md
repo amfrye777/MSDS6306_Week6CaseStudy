@@ -1,28 +1,20 @@
 Introduction
 ============
 
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT
+Our partners at "The World Bank" have captured and have provided us with
+GDP Ranking and Education statistics of countries across the world.
+These datasets are important assets to answering key questions for our
+stakeholders. Although we have been provided the data from "The World
+Bank", there are several steps needed to be taken before analysis can
+begin on the data. In the below sections, we will walk through loading
+and cleaning the datasets provided to us. Once we are comfortable with
+the data, we will dive into our analysis and answer 5 core questions
+recently asked by our stakeholders.
 
 ### Required Packages
 
 This RMD requires the following R packages to run: \* downloader \*
-digest \* formattable \* plyr \* ggplot2
+digest \* formattable \* plyr \* ggplot2 \* dplyr
 
 If you do not currently have installed any of these packages, please
 uncomment the install.packages lines below before knitting this file.
@@ -32,12 +24,30 @@ uncomment the install.packages lines below before knitting this file.
     #install.packages("formattable")
     #install.packages("plyr")
     #install.packages("ggplot2")
+    #install.packages("dplyr")
 
     library(downloader)
     library(digest)
     library(formattable)
     library(plyr)
     library(ggplot2)
+    library(dplyr)
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:plyr':
+    ## 
+    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+    ##     summarize
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
 
 Data Load
 =========
@@ -111,7 +121,7 @@ lets re-load it.
       }
     }
 
-Lets review the first 10 and last 100 records of this file:
+Lets review the first 10 and records 232 - 252 of this file:
 
     formattable(head(ProductsRaw,10))
 
@@ -266,7 +276,7 @@ Lets review the first 10 and last 100 records of this file:
 </tbody>
 </table>
 
-    formattable(tail(ProductsRaw,100))
+    formattable(ProductsRaw[232:252,])
 
 <table style="width:279%;">
 <colgroup>
@@ -560,1033 +570,6 @@ Lets review the first 10 and last 100 records of this file:
 </tr>
 <tr class="odd">
 <td align="left">252</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">253</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">254</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">255</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">256</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">257</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">258</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">259</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">260</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">261</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">262</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">263</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">264</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">265</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">266</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">267</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">268</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">269</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">270</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">271</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">272</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">273</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">274</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">275</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">276</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">277</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">278</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">279</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">280</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">281</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">282</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">283</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">284</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">285</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">286</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">287</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">288</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">289</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">290</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">291</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">292</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">293</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">294</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">295</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">296</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">297</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">298</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">299</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">300</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">301</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">302</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">303</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">304</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">305</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">306</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">307</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">308</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">309</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">310</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">311</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">312</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">313</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">314</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">315</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">316</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">317</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">318</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">319</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">320</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">321</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">322</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">323</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">324</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">325</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">326</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">327</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">328</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">329</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">330</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">331</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -2980,7 +1963,7 @@ with 189 records which Merged successfully.
 #### Sort the data frame in ascending order by GDP rank (so United States is last). What is the 13th country in the resulting data frame?
 
     ##Sort the data ascending by GDP Ranking
-    Products_M_Education<-arrange(Products_M_Education,Products_M_Education$USDollars)
+    Products_M_Education<-plyr::arrange(Products_M_Education,Products_M_Education$USDollars)
     formattable(Products_M_Education[13,])
 
 <table style="width:1128%;">
@@ -3115,7 +2098,7 @@ coming in at 178.
     P_M_E_AvgIncomeByGroup<-aggregate(Products_M_Education[,c(2,4)],by=list(Income.Group), FUN = mean, na.rm=TRUE)
     detach(Products_M_Education)
 
-    P_M_E_AvgIncomeByGroup<-arrange(P_M_E_AvgIncomeByGroup,desc(P_M_E_AvgIncomeByGroup$USDollars))
+    P_M_E_AvgIncomeByGroup<-plyr::arrange(P_M_E_AvgIncomeByGroup,desc(P_M_E_AvgIncomeByGroup$USDollars))
 
     formattable(P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",])
 
@@ -3153,7 +2136,7 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 #### Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
 
-    ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Group))+ geom_bar(stat="identity") + ggtitle("GDP by Country")+theme(axis.text.x=element_text(angle=90,hjust=1))
+    ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Group)) + geom_bar(stat="identity") + ggtitle("GDP by Country") + theme(axis.text.x=element_text(angle=90,hjust=1))
 
 ![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4-1.png)<!-- -->
 
@@ -3161,54 +2144,106 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 #### Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
 
-    library("downloader")
+    #Split Data into 5 equal quartiles
+    Products_M_Education$quartile <- ntile(Products_M_Education$Ranking, 5) 
 
-    ## Load CSV File
-    url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+    #Count Records
+    nrow(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",])
 
-    download(url,destfile="Products.csv")
+    ## [1] 5
 
-    list.files()
+    #View Records
+    formattable(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quartile")])
 
-    ## [1] "Products.csv"  "Question1.RMD" "Question2.RMD" "Question3.RMD"
-    ## [5] "Question4.RMD" "Question5.RMD"
+<table style="width:135%;">
+<colgroup>
+<col width="6%" />
+<col width="18%" />
+<col width="38%" />
+<col width="29%" />
+<col width="12%" />
+<col width="15%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">CountryCode</th>
+<th align="right">Long.Name</th>
+<th align="right">Income.Group</th>
+<th align="right">Ranking</th>
+<th align="right">USDollars</th>
+<th align="right">quartile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">152</td>
+<td align="right">EGY</td>
+<td align="right">Arab Republic of Egypt</td>
+<td align="right">Lower middle income</td>
+<td align="right">38</td>
+<td align="right">262832</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">159</td>
+<td align="right">THA</td>
+<td align="right">Kingdom of Thailand</td>
+<td align="right">Lower middle income</td>
+<td align="right">31</td>
+<td align="right">365966</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">174</td>
+<td align="right">IDN</td>
+<td align="right">Republic of Indonesia</td>
+<td align="right">Lower middle income</td>
+<td align="right">16</td>
+<td align="right">878043</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">180</td>
+<td align="right">IND</td>
+<td align="right">Republic of India</td>
+<td align="right">Lower middle income</td>
+<td align="right">10</td>
+<td align="right">1841710</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">188</td>
+<td align="right">CHN</td>
+<td align="right">People's Republic of China</td>
+<td align="right">Lower middle income</td>
+<td align="right">2</td>
+<td align="right">8227103</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
 
-    Products <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
-
-    head(Products)
-
-    ##    V1                          V2 V3            V4           V5 V6 V7 V8
-    ## 1     Gross domestic product 2012 NA                               NA NA
-    ## 2                                 NA                               NA NA
-    ## 3                                 NA               (millions of    NA NA
-    ## 4                         Ranking NA       Economy  US dollars)    NA NA
-    ## 5                                 NA                               NA NA
-    ## 6 USA                           1 NA United States  16,244,600     NA NA
-    ##   V9 V10
-    ## 1 NA  NA
-    ## 2 NA  NA
-    ## 3 NA  NA
-    ## 4 NA  NA
-    ## 5 NA  NA
-    ## 6 NA  NA
+There are 5 countries which are both classified as Lower middle income,
+and fall under the top 20% GDP ranking.
 
 Conclusion
 ==========
 
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
-TEXT TEXT TEXT TEXT TEXT TEXT
+In analyzing our GDP and Education data for countries around the world,
+we had to go through several steps in order to start analyzing our data.
+Data cleanup processes were performed to remove NA/Blank values, remove
+unwanted miscellaneous text, and ensure our variable types are
+classified correctly. This process is imperitive to providing accuracy
+in analysis!!
+
+With the Cleaned Data, we answered some core questions from our
+stakeholders. We were provided with 189 countries containing data in
+both GDP and Education metrics. Of those 189 countries, St. Kitts and
+Nevis (KNA) was identified as the 13th lowest ranked by USD. We also
+reviewed the average GDP Rankings/USDollars by IncomeGroup. A visual was
+presented to display DDP(in dollars) by country, highlighting the
+differences in Income Groups. Finally, we were able to identify the 5
+countries which are both classified as Lower middle income, and fall
+under the top 20% GDP ranking.

@@ -1,0 +1,14 @@
+---
+title: "Question2"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+```{R Q2}
+##Sort the data ascending by GDP Ranking
+Products_M_Education<-plyr::arrange(Products_M_Education,Products_M_Education$USDollars)
+formattable(Products_M_Education[13,])
+```
+
+The 13th lowest ranked country by USD is St. Kitts and Nevis (KNA) coming in at 178.

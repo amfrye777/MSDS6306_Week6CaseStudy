@@ -1,0 +1,47 @@
+---
+title: "CleanProduct"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+When reviewing the Head/Tail records of the Raw product dataset, we see that the first 5 records are not relevant for analysis, and there are several NA or Blank values for CountryCode/Rankings and other NA columns. Lets remove all invalid records, invalid columns, and declare our column headers. 
+
+```{R CleanProductBlanks}
+## Find and remove records with blank values for countrycode or Ranking (V1,V2)
+sum(!complete.cases(ProductsRaw))
+nrow(ProductsRaw[ProductsRaw$V1=='' | ProductsRaw$V2=='' ,c(1,2,4,5,6)])
+
+Products<-ProductsRaw[ProductsRaw$V1!='' & ProductsRaw$V2!='' ,c(1,2,4,5,6)]
+sum(!complete.cases(Products))
+
+## Define Variable Names
+names(Products)<-c("CountryCode", "Ranking", "Economy","USDollars", "Note")
+str(Products)
+
+```
+
+With our blanks removed and columns trimmed, it is apparent that Note values are simply letters. When looking at the tail of the original file we see these Notes defined in the footer notes. Lets clean our dataset to append these notes to the appropriate records.
+
+```{r AppendProductNotes}
+##Append Notes
+Products$Note[Products$Note=="a"]<-"Includes Former Spanish Sahara."
+Products$Note[Products$Note=="b"]<-"Excludes South Sudan"
+Products$Note[Products$Note=="c"]<-"Covers mainland Tanzania only."
+Products$Note[Products$Note=="d"]<-"Data are for the area controlled by the government of the Republic of Cyprus."
+Products$Note[Products$Note=="e"]<-"Excludes Abkhazia and South Ossetia."
+Products$Note[Products$Note=="f"]<-"Excludes Transnistria."
+formattable(Products[Products$Note!="",])
+```
+
+Our USDollars and Ranking variables should be classified as an integer. Lets remove the comma's and convert to a numeric value.
+
+```{r ConvertProductClass}
+#Remove commas and convert USDollars to Numeric
+Products$USDollars<-as.numeric(gsub(",","",Products$USDollars))
+
+#Convert Ranking to Numeric
+Products$Ranking<-as.numeric(Products$Ranking)
+
+str(Products)
+```

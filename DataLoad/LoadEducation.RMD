@@ -1,0 +1,65 @@
+---
+title: "LoadEducation"
+author: "Alex Frye"
+date: "June 12, 2016"
+output: md_document
+---
+
+The Education data are are found [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv).
+
+**Data Notes**
+
+*"The World Bank EdStats All Indicator Query holds around 3,000 internationally comparable indicators that describe education access, progression, completion, literacy, teachers, population, and expenditures. The indicators cover the education cycle from pre-primary to vocational and tertiary education."* [Data.worldbank.org](http://data.worldbank.org/data-catalog/ed-stats)
+
+Lets load this data from it's source if you do not already have this data file in the DataLoad Directory. 
+
+```{R DownloadEducation.csv}
+setwd(DataLoad)
+
+##Only download the file fresh if the file does not exist
+if (file.exists("Education.csv") ==FALSE) {
+  ## Download CSV File
+  url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+  download(url, destfile = "Education.csv")
+}  
+
+#Verify file exists in DataLoad Directory
+list.files()
+```
+
+If the File's Data SHA1 HASH value does not match original research, lets re-load it.
+
+```{r VerifySHA1_and_LoadEducation}
+##Load Education.csv into EducationRaw data.frame
+EducationRaw <- read.csv("Education.csv",stringsAsFactors = FALSE,header = TRUE)
+
+## Ensure that the Education.csv file's data sha1 HASH value matches that of original research
+## Define Data SHA1 HASH
+SHAHASHEducation <- digest(EducationRaw, algo="sha1")
+ 
+## If file's data does not match original research, download file fresh and check again
+if (SHAHASHEducation != "aa8a8e7da032757672d3522d645d89f128a98cb2") {
+  url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+  download(url, destfile = "Education.csv")
+  
+  EducationRaw <- read.csv("Education.csv",stringsAsFactors = FALSE,header = TRUE)
+  
+  ## Define new Data SHA1 HASH
+  SHAHASHEducation <- digest(EducationRaw, algo="sha1")
+  
+  ## If file's data still does not match, STOP BUILD WITH ERRORS
+  if (SHAHASHEducation != "aa8a8e7da032757672d3522d645d89f128a98cb2") {
+
+  stop("File SHA1 HASH Value does not match original research. Valid SHA1 HASH value of data = \"aa8a8e7da032757672d3522d645d89f128a98cb2\"")
+
+  }
+}
+
+```
+
+Lets review the first and last 10 records of this file:
+
+```{r HeadEducationRaw}
+formattable(head(EducationRaw,10))
+formattable(tail(EducationRaw,10))
+```
