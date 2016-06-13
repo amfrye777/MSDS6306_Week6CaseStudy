@@ -11,3 +11,4 @@ ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Gro
 
 ```
 
+In this Bar Chart, we may observe the extreme outlier in the High Income: OECD caused by USA GDP. It is color-coded to highlight the differences between income groups.

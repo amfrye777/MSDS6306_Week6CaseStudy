@@ -2140,6 +2140,10 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 ![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4-1.png)<!-- -->
 
+In this Bar Chart, we may observe the extreme outlier in the High
+Income: OECD caused by USA GDP. It is color-coded to highlight the
+differences between income groups.
+
 ### Question 5
 
 #### Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
@@ -2243,7 +2247,7 @@ stakeholders. We were provided with 189 countries containing data in
 both GDP and Education metrics. Of those 189 countries, St. Kitts and
 Nevis (KNA) was identified as the 13th lowest ranked by USD. We also
 reviewed the average GDP Rankings/USDollars by IncomeGroup. A visual was
-presented to display DDP(in dollars) by country, highlighting the
+presented to display GDP(in dollars) by country, highlighting the
 differences in Income Groups. Finally, we were able to identify the 5
 countries which are both classified as Lower middle income, and fall
 under the top 20% GDP ranking.
