@@ -78,7 +78,11 @@ data file in the DataLoad Directory.
     #Verify file exists in DataLoad Directory
     list.files()
 
-    ## [1] "LoadEducation.RMD" "LoadProduct.RMD"   "Products.csv"
+    ## [1] "Education.csv"     "LoadEducation.RMD" "LoadProduct.RMD"  
+    ## [4] "Products.csv"
+
+If the File's Data SHA1 HASH value does not match original research,
+lets re-load it.
 
     ##Load Products.csv into ProductsRaw data.frame
     ProductsRaw <- read.csv("Products.csv",stringsAsFactors = FALSE,header = FALSE)
@@ -104,6 +108,8 @@ data file in the DataLoad Directory.
 
       }
     }
+
+Lets review the first 10 records of this file:
 
     formattable(head(ProductsRaw,10))
 
@@ -260,8 +266,469 @@ data file in the DataLoad Directory.
 
 ### Education Data Load
 
-    ## Load CSV File
-    url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
+### Load the Education Data File
+
+*"The World Bank EdStats All Indicator Query holds around 3,000
+internationally comparable indicators that describe education access,
+progression, completion, literacy, teachers, population, and
+expenditures. The indicators cover the education cycle from pre-primary
+to vocational and tertiary education."*
+[Data.worldbank.org](http://data.worldbank.org/data-catalog/ed-stats)
+
+The Education data are are found
+[here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv).
+Lets load this data from it's source if you do not already have this
+data file in the DataLoad Directory.
+
+    setwd(DataLoad)
+
+    ##Only download the file fresh if the file does not exist
+    if (file.exists("Education.csv") ==FALSE) {
+      ## Download CSV File
+      url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+      download(url, destfile = "Education.csv")
+    }  
+
+    #Verify file exists in DataLoad Directory
+    list.files()
+
+    ## [1] "Education.csv"     "LoadEducation.RMD" "LoadProduct.RMD"  
+    ## [4] "Products.csv"
+
+If the File's Data SHA1 HASH value does not match original research,
+lets re-load it.
+
+    ##Load Education.csv into EducationRaw data.frame
+    EducationRaw <- read.csv("Education.csv",stringsAsFactors = FALSE,header = FALSE)
+
+    ## Ensure that the Education.csv file's data sha1 HASH value matches that of original research
+    ## Define Data SHA1 HASH
+    SHAHASHEducation <- digest(EducationRaw, algo="sha1")
+      
+    ## If file's data does not match original research, download file fresh and check again
+    if (SHAHASHEducation != "e62cde0a23e00d5882be1f5d9e76504f68b0efc8") {
+      url <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
+      download(url, destfile = "Education.csv")
+      
+      EducationRaw <- read.csv("Education.csv",stringsAsFactors = FALSE,header = FALSE)
+      
+      ## Define new Data SHA1 HASH
+      SHAHASHEducation <- digest(EducationRaw, algo="sha1")
+      SHAHASHEducation
+      ## If file's data still does not match, STOP BUILD WITH ERRORS
+      if (SHAHASHEducation != "e62cde0a23e00d5882be1f5d9e76504f68b0efc8") {
+
+      stop("File SHA1 HASH Value does not match original research. Valid SHA1 HASH value of data = \"e62cde0a23e00d5882be1f5d9e76504f68b0efc8\"")
+
+      }
+    }
+
+Lets review the first 10 records of this file:
+
+    formattable(head(EducationRaw,10))
+
+<table style="width:1151%;">
+<colgroup>
+<col width="18%" />
+<col width="41%" />
+<col width="30%" />
+<col width="38%" />
+<col width="25%" />
+<col width="19%" />
+<col width="22%" />
+<col width="36%" />
+<col width="36%" />
+<col width="106%" />
+<col width="40%" />
+<col width="47%" />
+<col width="40%" />
+<col width="29%" />
+<col width="43%" />
+<col width="23%" />
+<col width="48%" />
+<col width="44%" />
+<col width="23%" />
+<col width="43%" />
+<col width="45%" />
+<col width="70%" />
+<col width="40%" />
+<col width="38%" />
+<col width="33%" />
+<col width="26%" />
+<col width="41%" />
+<col width="19%" />
+<col width="15%" />
+<col width="30%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">V1</th>
+<th align="right">V2</th>
+<th align="right">V3</th>
+<th align="right">V4</th>
+<th align="right">V5</th>
+<th align="right">V6</th>
+<th align="right">V7</th>
+<th align="right">V8</th>
+<th align="right">V9</th>
+<th align="right">V10</th>
+<th align="right">V11</th>
+<th align="right">V12</th>
+<th align="right">V13</th>
+<th align="right">V14</th>
+<th align="right">V15</th>
+<th align="right">V16</th>
+<th align="right">V17</th>
+<th align="right">V18</th>
+<th align="right">V19</th>
+<th align="right">V20</th>
+<th align="right">V21</th>
+<th align="right">V22</th>
+<th align="right">V23</th>
+<th align="right">V24</th>
+<th align="right">V25</th>
+<th align="right">V26</th>
+<th align="right">V27</th>
+<th align="right">V28</th>
+<th align="right">V29</th>
+<th align="right">V30</th>
+<th align="right">V31</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">CountryCode</td>
+<td align="right">Long Name</td>
+<td align="right">Income Group</td>
+<td align="right">Region</td>
+<td align="right">Lending category</td>
+<td align="right">Other groups</td>
+<td align="right">Currency Unit</td>
+<td align="right">Latest population census</td>
+<td align="right">Latest household survey</td>
+<td align="right">Special Notes</td>
+<td align="right">National accounts base year</td>
+<td align="right">National accounts reference year</td>
+<td align="right">System of National Accounts</td>
+<td align="right">SNA price valuation</td>
+<td align="right">Alternative conversion factor</td>
+<td align="right">PPP survey year</td>
+<td align="right">Balance of Payments Manual in use</td>
+<td align="right">External debt Reporting status</td>
+<td align="right">System of trade</td>
+<td align="right">Government Accounting concept</td>
+<td align="right">IMF data dissemination standard</td>
+<td align="right">Source of most recent Income and expenditure data</td>
+<td align="right">Vital registration complete</td>
+<td align="right">Latest agricultural census</td>
+<td align="right">Latest industrial data</td>
+<td align="right">Latest trade data</td>
+<td align="right">Latest water withdrawal data</td>
+<td align="right">2-alpha code</td>
+<td align="right">WB-2 code</td>
+<td align="right">Table Name</td>
+<td align="right">Short Name</td>
+</tr>
+<tr class="even">
+<td align="right">ABW</td>
+<td align="right">Aruba</td>
+<td align="right">High income: nonOECD</td>
+<td align="right">Latin America &amp; Caribbean</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Aruban florin</td>
+<td align="right">2000</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1995</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Special</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">2008</td>
+<td align="right"></td>
+<td align="right">AW</td>
+<td align="right">AW</td>
+<td align="right">Aruba</td>
+<td align="right">Aruba</td>
+</tr>
+<tr class="odd">
+<td align="right">ADO</td>
+<td align="right">Principality of Andorra</td>
+<td align="right">High income: nonOECD</td>
+<td align="right">Europe &amp; Central Asia</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Euro</td>
+<td align="right">Register based</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">General</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Yes</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">2006</td>
+<td align="right"></td>
+<td align="right">AD</td>
+<td align="right">AD</td>
+<td align="right">Andorra</td>
+<td align="right">Andorra</td>
+</tr>
+<tr class="even">
+<td align="right">AFG</td>
+<td align="right">Islamic State of Afghanistan</td>
+<td align="right">Low income</td>
+<td align="right">South Asia</td>
+<td align="right">IDA</td>
+<td align="right">HIPC</td>
+<td align="right">Afghan afghani</td>
+<td align="right">1979</td>
+<td align="right">MICS, 2003</td>
+<td align="right">Fiscal year end: March 20; reporting period for national accounts data: FY.</td>
+<td align="right">2002/2003</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">VAB</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Actual</td>
+<td align="right">General</td>
+<td align="right">Consolidated</td>
+<td align="right">GDDS</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">2008</td>
+<td align="right">2000</td>
+<td align="right">AF</td>
+<td align="right">AF</td>
+<td align="right">Afghanistan</td>
+<td align="right">Afghanistan</td>
+</tr>
+<tr class="odd">
+<td align="right">AGO</td>
+<td align="right">People's Republic of Angola</td>
+<td align="right">Lower middle income</td>
+<td align="right">Sub-Saharan Africa</td>
+<td align="right">IDA</td>
+<td align="right"></td>
+<td align="right">Angolan kwanza</td>
+<td align="right">1970</td>
+<td align="right">MICS, 2001, MIS, 2006/07</td>
+<td align="right"></td>
+<td align="right">1997</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">VAP</td>
+<td align="right">1991-96</td>
+<td align="right">2005</td>
+<td align="right">BPM5</td>
+<td align="right">Actual</td>
+<td align="right">Special</td>
+<td align="right"></td>
+<td align="right">GDDS</td>
+<td align="right">IHS, 2000</td>
+<td align="right"></td>
+<td align="right">1964-65</td>
+<td align="right"></td>
+<td align="right">1991</td>
+<td align="right">2000</td>
+<td align="right">AO</td>
+<td align="right">AO</td>
+<td align="right">Angola</td>
+<td align="right">Angola</td>
+</tr>
+<tr class="even">
+<td align="right">ALB</td>
+<td align="right">Republic of Albania</td>
+<td align="right">Upper middle income</td>
+<td align="right">Europe &amp; Central Asia</td>
+<td align="right">IBRD</td>
+<td align="right"></td>
+<td align="right">Albanian lek</td>
+<td align="right">2001</td>
+<td align="right">MICS, 2005</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1996</td>
+<td align="right">1993</td>
+<td align="right">VAB</td>
+<td align="right"></td>
+<td align="right">2005</td>
+<td align="right">BPM5</td>
+<td align="right">Actual</td>
+<td align="right">General</td>
+<td align="right">Consolidated</td>
+<td align="right">GDDS</td>
+<td align="right">LSMS, 2005</td>
+<td align="right">Yes</td>
+<td align="right">1998</td>
+<td align="right">2005</td>
+<td align="right">2008</td>
+<td align="right">2000</td>
+<td align="right">AL</td>
+<td align="right">AL</td>
+<td align="right">Albania</td>
+<td align="right">Albania</td>
+</tr>
+<tr class="odd">
+<td align="right">ARE</td>
+<td align="right">United Arab Emirates</td>
+<td align="right">High income: nonOECD</td>
+<td align="right">Middle East &amp; North Africa</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">U.A.E. dirham</td>
+<td align="right">2005</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1995</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">VAB</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">BPM4</td>
+<td align="right"></td>
+<td align="right">General</td>
+<td align="right">Consolidated</td>
+<td align="right">GDDS</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1998</td>
+<td align="right"></td>
+<td align="right">2008</td>
+<td align="right">2005</td>
+<td align="right">AE</td>
+<td align="right">AE</td>
+<td align="right">United Arab Emirates</td>
+<td align="right">United Arab Emirates</td>
+</tr>
+<tr class="even">
+<td align="right">ARG</td>
+<td align="right">Argentine Republic</td>
+<td align="right">Upper middle income</td>
+<td align="right">Latin America &amp; Caribbean</td>
+<td align="right">IBRD</td>
+<td align="right"></td>
+<td align="right">Argentine peso</td>
+<td align="right">2001</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1993</td>
+<td align="right"></td>
+<td align="right">1993</td>
+<td align="right">VAB</td>
+<td align="right">1971-84</td>
+<td align="right">2005</td>
+<td align="right">BPM5</td>
+<td align="right">Actual</td>
+<td align="right">Special</td>
+<td align="right">Consolidated</td>
+<td align="right">SDDS</td>
+<td align="right">IHS, 2006</td>
+<td align="right">Yes</td>
+<td align="right">2002</td>
+<td align="right">2001</td>
+<td align="right">2008</td>
+<td align="right">2000</td>
+<td align="right">AR</td>
+<td align="right">AR</td>
+<td align="right">Argentina</td>
+<td align="right">Argentina</td>
+</tr>
+<tr class="odd">
+<td align="right">ARM</td>
+<td align="right">Republic of Armenia</td>
+<td align="right">Lower middle income</td>
+<td align="right">Europe &amp; Central Asia</td>
+<td align="right">Blend</td>
+<td align="right"></td>
+<td align="right">Armenian dram</td>
+<td align="right">2001</td>
+<td align="right">DHS, 2005</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">1996</td>
+<td align="right">1993</td>
+<td align="right">VAB</td>
+<td align="right">1990-95</td>
+<td align="right">2005</td>
+<td align="right">BPM5</td>
+<td align="right">Actual</td>
+<td align="right">Special</td>
+<td align="right">Consolidated</td>
+<td align="right">SDDS</td>
+<td align="right">IHS, 2007</td>
+<td align="right">Yes</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">2008</td>
+<td align="right">2000</td>
+<td align="right">AM</td>
+<td align="right">AM</td>
+<td align="right">Armenia</td>
+<td align="right">Armenia</td>
+</tr>
+<tr class="even">
+<td align="right">ASM</td>
+<td align="right">American Samoa</td>
+<td align="right">Upper middle income</td>
+<td align="right">East Asia &amp; Pacific</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">U.S. dollar</td>
+<td align="right">2000</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">Yes</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right">AS</td>
+<td align="right">AS</td>
+<td align="right">American Samoa</td>
+<td align="right">American Samoa</td>
+</tr>
+</tbody>
+</table>
 
 Data Cleanup
 ============
