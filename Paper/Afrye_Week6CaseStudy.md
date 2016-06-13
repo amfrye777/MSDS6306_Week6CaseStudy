@@ -49,7 +49,7 @@ The Gross Domestic Product data for the 190 ranked countries are are
 found
 [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv).
 
-\*\*Data <Notes:**>
+**Data Notes**
 
 *"Year to year changes in the nominal level of output or income of an
 economy are affected by a combination of forces: real growth, price
@@ -267,7 +267,7 @@ Lets review the first 10 records of this file:
 The Education data are are found
 [here](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv).
 
-\*\*Data <Notes:**>
+**Data Notes**
 
 *"The World Bank EdStats All Indicator Query holds around 3,000
 internationally comparable indicators that describe education access,
