@@ -11,4 +11,5 @@ Similar to our cleanup in the Product Data, lets search for and remove any NA or
 ## Find and remove records with blank values for CountryCode or Income.Group
 nrow(EducationRaw[EducationRaw$CountryCode=='' | EducationRaw$Income.Group=='',])
 Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',]
+str(Education)
 ```
