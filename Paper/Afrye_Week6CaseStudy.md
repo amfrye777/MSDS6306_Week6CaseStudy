@@ -2170,9 +2170,11 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 #### Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
 
-    ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Group)) + geom_bar(stat="identity") + ggtitle("GDP by Country") + theme(axis.text.x=element_text(angle=90,hjust=1))
+    ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group)) + geom_density() + ggtitle("GDP by Country") 
 
 ![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4-1.png)<!-- -->
+
+    #+ theme(axis.text.x=element_text(angle=90,hjust=1))
 
 In this Bar Chart, we may observe the extreme outlier in the High
 Income: OECD caused by USA GDP. It is color-coded to highlight the

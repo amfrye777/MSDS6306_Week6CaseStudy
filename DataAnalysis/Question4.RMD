@@ -7,7 +7,10 @@ output: md_document
 
 ```{R Q4}
 
-ggplot(data=Products_M_Education, aes(x=CountryCode,y=USDollars, fill=Income.Group)) + geom_bar(stat="identity") + ggtitle("GDP by Country") + theme(axis.text.x=element_text(angle=90,hjust=1))
+ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group)) + geom_density() + ggtitle("GDP by Country") 
+
+
+#+ theme(axis.text.x=element_text(angle=90,hjust=1))
 
 ```
 
