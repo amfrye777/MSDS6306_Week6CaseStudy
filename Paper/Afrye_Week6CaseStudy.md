@@ -1622,41 +1622,15 @@ any NA or Blank values found in CountryCode or Income.Group.
 
     ## [1] 24
 
-    Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',]
+    ## Load records without blank values into Education and remove unnecessary columns for this analysis
+    Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',c("CountryCode", "Long.Name", "Income.Group")]
+
     str(Education)
 
-    ## 'data.frame':    210 obs. of  31 variables:
-    ##  $ CountryCode                                      : chr  "ABW" "ADO" "AFG" "AGO" ...
-    ##  $ Long.Name                                        : chr  "Aruba" "Principality of Andorra" "Islamic State of Afghanistan" "People's Republic of Angola" ...
-    ##  $ Income.Group                                     : chr  "High income: nonOECD" "High income: nonOECD" "Low income" "Lower middle income" ...
-    ##  $ Region                                           : chr  "Latin America & Caribbean" "Europe & Central Asia" "South Asia" "Sub-Saharan Africa" ...
-    ##  $ Lending.category                                 : chr  "" "" "IDA" "IDA" ...
-    ##  $ Other.groups                                     : chr  "" "" "HIPC" "" ...
-    ##  $ Currency.Unit                                    : chr  "Aruban florin" "Euro" "Afghan afghani" "Angolan kwanza" ...
-    ##  $ Latest.population.census                         : chr  "2000" "Register based" "1979" "1970" ...
-    ##  $ Latest.household.survey                          : chr  "" "" "MICS, 2003" "MICS, 2001, MIS, 2006/07" ...
-    ##  $ Special.Notes                                    : chr  "" "" "Fiscal year end: March 20; reporting period for national accounts data: FY." "" ...
-    ##  $ National.accounts.base.year                      : chr  "1995" "" "2002/2003" "1997" ...
-    ##  $ National.accounts.reference.year                 : int  NA NA NA NA 1996 NA NA 1996 NA NA ...
-    ##  $ System.of.National.Accounts                      : int  NA NA NA NA 1993 NA 1993 1993 NA NA ...
-    ##  $ SNA.price.valuation                              : chr  "" "" "VAB" "VAP" ...
-    ##  $ Alternative.conversion.factor                    : chr  "" "" "" "1991-96" ...
-    ##  $ PPP.survey.year                                  : int  NA NA NA 2005 2005 NA 2005 2005 NA NA ...
-    ##  $ Balance.of.Payments.Manual.in.use                : chr  "" "" "" "BPM5" ...
-    ##  $ External.debt.Reporting.status                   : chr  "" "" "Actual" "Actual" ...
-    ##  $ System.of.trade                                  : chr  "Special" "General" "General" "Special" ...
-    ##  $ Government.Accounting.concept                    : chr  "" "" "Consolidated" "" ...
-    ##  $ IMF.data.dissemination.standard                  : chr  "" "" "GDDS" "GDDS" ...
-    ##  $ Source.of.most.recent.Income.and.expenditure.data: chr  "" "" "" "IHS, 2000" ...
-    ##  $ Vital.registration.complete                      : chr  "" "Yes" "" "" ...
-    ##  $ Latest.agricultural.census                       : chr  "" "" "" "1964-65" ...
-    ##  $ Latest.industrial.data                           : int  NA NA NA NA 2005 NA 2001 NA NA NA ...
-    ##  $ Latest.trade.data                                : int  2008 2006 2008 1991 2008 2008 2008 2008 NA 2007 ...
-    ##  $ Latest.water.withdrawal.data                     : int  NA NA 2000 2000 2000 2005 2000 2000 NA 1990 ...
-    ##  $ X2.alpha.code                                    : chr  "AW" "AD" "AF" "AO" ...
-    ##  $ WB.2.code                                        : chr  "AW" "AD" "AF" "AO" ...
-    ##  $ Table.Name                                       : chr  "Aruba" "Andorra" "Afghanistan" "Angola" ...
-    ##  $ Short.Name                                       : chr  "Aruba" "Andorra" "Afghanistan" "Angola" ...
+    ## 'data.frame':    210 obs. of  3 variables:
+    ##  $ CountryCode : chr  "ABW" "ADO" "AFG" "AGO" ...
+    ##  $ Long.Name   : chr  "Aruba" "Principality of Andorra" "Islamic State of Afghanistan" "People's Republic of Angola" ...
+    ##  $ Income.Group: chr  "High income: nonOECD" "High income: nonOECD" "Low income" "Lower middle income" ...
 
 Data Analysis & Questions
 =========================
@@ -1672,7 +1646,7 @@ Stakeholders have requested answers to 5 core questions:
     Products_M_Education<-merge(Products,Education,by="CountryCode", all=TRUE)
     formattable(head(Products_M_Education))
 
-<table style="width:1219%;">
+<table style="width:157%;">
 <colgroup>
 <col width="18%" />
 <col width="12%" />
@@ -1680,34 +1654,6 @@ Stakeholders have requested answers to 5 core questions:
 <col width="15%" />
 <col width="8%" />
 <col width="41%" />
-<col width="30%" />
-<col width="38%" />
-<col width="25%" />
-<col width="19%" />
-<col width="22%" />
-<col width="36%" />
-<col width="36%" />
-<col width="106%" />
-<col width="40%" />
-<col width="47%" />
-<col width="40%" />
-<col width="29%" />
-<col width="43%" />
-<col width="23%" />
-<col width="48%" />
-<col width="44%" />
-<col width="23%" />
-<col width="43%" />
-<col width="45%" />
-<col width="70%" />
-<col width="40%" />
-<col width="38%" />
-<col width="33%" />
-<col width="26%" />
-<col width="41%" />
-<col width="20%" />
-<col width="15%" />
-<col width="30%" />
 <col width="30%" />
 </colgroup>
 <thead>
@@ -1719,34 +1665,6 @@ Stakeholders have requested answers to 5 core questions:
 <th align="right">Note</th>
 <th align="right">Long.Name</th>
 <th align="right">Income.Group</th>
-<th align="right">Region</th>
-<th align="right">Lending.category</th>
-<th align="right">Other.groups</th>
-<th align="right">Currency.Unit</th>
-<th align="right">Latest.population.census</th>
-<th align="right">Latest.household.survey</th>
-<th align="right">Special.Notes</th>
-<th align="right">National.accounts.base.year</th>
-<th align="right">National.accounts.reference.year</th>
-<th align="right">System.of.National.Accounts</th>
-<th align="right">SNA.price.valuation</th>
-<th align="right">Alternative.conversion.factor</th>
-<th align="right">PPP.survey.year</th>
-<th align="right">Balance.of.Payments.Manual.in.use</th>
-<th align="right">External.debt.Reporting.status</th>
-<th align="right">System.of.trade</th>
-<th align="right">Government.Accounting.concept</th>
-<th align="right">IMF.data.dissemination.standard</th>
-<th align="right">Source.of.most.recent.Income.and.expenditure.data</th>
-<th align="right">Vital.registration.complete</th>
-<th align="right">Latest.agricultural.census</th>
-<th align="right">Latest.industrial.data</th>
-<th align="right">Latest.trade.data</th>
-<th align="right">Latest.water.withdrawal.data</th>
-<th align="right">X2.alpha.code</th>
-<th align="right">WB.2.code</th>
-<th align="right">Table.Name</th>
-<th align="right">Short.Name</th>
 </tr>
 </thead>
 <tbody>
@@ -1758,34 +1676,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right"></td>
 <td align="right">Aruba</td>
 <td align="right">High income: nonOECD</td>
-<td align="right">Latin America &amp; Caribbean</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Aruban florin</td>
-<td align="right">2000</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">1995</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Special</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">2008</td>
-<td align="right">NA</td>
-<td align="right">AW</td>
-<td align="right">AW</td>
-<td align="right">Aruba</td>
-<td align="right">Aruba</td>
 </tr>
 <tr class="even">
 <td align="right">ADO</td>
@@ -1795,34 +1685,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right">NA</td>
 <td align="right">Principality of Andorra</td>
 <td align="right">High income: nonOECD</td>
-<td align="right">Europe &amp; Central Asia</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Euro</td>
-<td align="right">Register based</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">General</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">Yes</td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">2006</td>
-<td align="right">NA</td>
-<td align="right">AD</td>
-<td align="right">AD</td>
-<td align="right">Andorra</td>
-<td align="right">Andorra</td>
 </tr>
 <tr class="odd">
 <td align="right">AFG</td>
@@ -1832,34 +1694,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right"></td>
 <td align="right">Islamic State of Afghanistan</td>
 <td align="right">Low income</td>
-<td align="right">South Asia</td>
-<td align="right">IDA</td>
-<td align="right">HIPC</td>
-<td align="right">Afghan afghani</td>
-<td align="right">1979</td>
-<td align="right">MICS, 2003</td>
-<td align="right">Fiscal year end: March 20; reporting period for national accounts data: FY.</td>
-<td align="right">2002/2003</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">VAB</td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right"></td>
-<td align="right">Actual</td>
-<td align="right">General</td>
-<td align="right">Consolidated</td>
-<td align="right">GDDS</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">2008</td>
-<td align="right">2000</td>
-<td align="right">AF</td>
-<td align="right">AF</td>
-<td align="right">Afghanistan</td>
-<td align="right">Afghanistan</td>
 </tr>
 <tr class="even">
 <td align="right">AGO</td>
@@ -1869,34 +1703,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right"></td>
 <td align="right">People's Republic of Angola</td>
 <td align="right">Lower middle income</td>
-<td align="right">Sub-Saharan Africa</td>
-<td align="right">IDA</td>
-<td align="right"></td>
-<td align="right">Angolan kwanza</td>
-<td align="right">1970</td>
-<td align="right">MICS, 2001, MIS, 2006/07</td>
-<td align="right"></td>
-<td align="right">1997</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">VAP</td>
-<td align="right">1991-96</td>
-<td align="right">2005</td>
-<td align="right">BPM5</td>
-<td align="right">Actual</td>
-<td align="right">Special</td>
-<td align="right"></td>
-<td align="right">GDDS</td>
-<td align="right">IHS, 2000</td>
-<td align="right"></td>
-<td align="right">1964-65</td>
-<td align="right">NA</td>
-<td align="right">1991</td>
-<td align="right">2000</td>
-<td align="right">AO</td>
-<td align="right">AO</td>
-<td align="right">Angola</td>
-<td align="right">Angola</td>
 </tr>
 <tr class="odd">
 <td align="right">ALB</td>
@@ -1906,34 +1712,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right"></td>
 <td align="right">Republic of Albania</td>
 <td align="right">Upper middle income</td>
-<td align="right">Europe &amp; Central Asia</td>
-<td align="right">IBRD</td>
-<td align="right"></td>
-<td align="right">Albanian lek</td>
-<td align="right">2001</td>
-<td align="right">MICS, 2005</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">1996</td>
-<td align="right">1993</td>
-<td align="right">VAB</td>
-<td align="right"></td>
-<td align="right">2005</td>
-<td align="right">BPM5</td>
-<td align="right">Actual</td>
-<td align="right">General</td>
-<td align="right">Consolidated</td>
-<td align="right">GDDS</td>
-<td align="right">LSMS, 2005</td>
-<td align="right">Yes</td>
-<td align="right">1998</td>
-<td align="right">2005</td>
-<td align="right">2008</td>
-<td align="right">2000</td>
-<td align="right">AL</td>
-<td align="right">AL</td>
-<td align="right">Albania</td>
-<td align="right">Albania</td>
 </tr>
 <tr class="even">
 <td align="right">ARE</td>
@@ -1943,34 +1721,6 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right"></td>
 <td align="right">United Arab Emirates</td>
 <td align="right">High income: nonOECD</td>
-<td align="right">Middle East &amp; North Africa</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">U.A.E. dirham</td>
-<td align="right">2005</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">1995</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">VAB</td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">BPM4</td>
-<td align="right"></td>
-<td align="right">General</td>
-<td align="right">Consolidated</td>
-<td align="right">GDDS</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">1998</td>
-<td align="right">NA</td>
-<td align="right">2008</td>
-<td align="right">2005</td>
-<td align="right">AE</td>
-<td align="right">AE</td>
-<td align="right">United Arab Emirates</td>
-<td align="right">United Arab Emirates</td>
 </tr>
 </tbody>
 </table>
@@ -2000,7 +1750,7 @@ with 189 records which Merged successfully.
     Products_M_Education<-plyr::arrange(Products_M_Education,Products_M_Education$USDollars)
     formattable(Products_M_Education[13,])
 
-<table style="width:1128%;">
+<table style="width:147%;">
 <colgroup>
 <col width="5%" />
 <col width="18%" />
@@ -2008,34 +1758,6 @@ with 189 records which Merged successfully.
 <col width="29%" />
 <col width="15%" />
 <col width="8%" />
-<col width="29%" />
-<col width="29%" />
-<col width="37%" />
-<col width="25%" />
-<col width="19%" />
-<col width="31%" />
-<col width="36%" />
-<col width="34%" />
-<col width="20%" />
-<col width="40%" />
-<col width="47%" />
-<col width="40%" />
-<col width="29%" />
-<col width="43%" />
-<col width="23%" />
-<col width="48%" />
-<col width="44%" />
-<col width="23%" />
-<col width="43%" />
-<col width="45%" />
-<col width="70%" />
-<col width="40%" />
-<col width="38%" />
-<col width="33%" />
-<col width="26%" />
-<col width="41%" />
-<col width="20%" />
-<col width="15%" />
 <col width="29%" />
 <col width="29%" />
 </colgroup>
@@ -2049,34 +1771,6 @@ with 189 records which Merged successfully.
 <th align="right">Note</th>
 <th align="right">Long.Name</th>
 <th align="right">Income.Group</th>
-<th align="right">Region</th>
-<th align="right">Lending.category</th>
-<th align="right">Other.groups</th>
-<th align="right">Currency.Unit</th>
-<th align="right">Latest.population.census</th>
-<th align="right">Latest.household.survey</th>
-<th align="right">Special.Notes</th>
-<th align="right">National.accounts.base.year</th>
-<th align="right">National.accounts.reference.year</th>
-<th align="right">System.of.National.Accounts</th>
-<th align="right">SNA.price.valuation</th>
-<th align="right">Alternative.conversion.factor</th>
-<th align="right">PPP.survey.year</th>
-<th align="right">Balance.of.Payments.Manual.in.use</th>
-<th align="right">External.debt.Reporting.status</th>
-<th align="right">System.of.trade</th>
-<th align="right">Government.Accounting.concept</th>
-<th align="right">IMF.data.dissemination.standard</th>
-<th align="right">Source.of.most.recent.Income.and.expenditure.data</th>
-<th align="right">Vital.registration.complete</th>
-<th align="right">Latest.agricultural.census</th>
-<th align="right">Latest.industrial.data</th>
-<th align="right">Latest.trade.data</th>
-<th align="right">Latest.water.withdrawal.data</th>
-<th align="right">X2.alpha.code</th>
-<th align="right">WB.2.code</th>
-<th align="right">Table.Name</th>
-<th align="right">Short.Name</th>
 </tr>
 </thead>
 <tbody>
@@ -2089,34 +1783,6 @@ with 189 records which Merged successfully.
 <td align="right"></td>
 <td align="right">St. Kitts and Nevis</td>
 <td align="right">Upper middle income</td>
-<td align="right">Latin America &amp; Caribbean</td>
-<td align="right">IBRD</td>
-<td align="right"></td>
-<td align="right">East Caribbean dollar</td>
-<td align="right">2001</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">1990</td>
-<td align="right">NA</td>
-<td align="right">1993</td>
-<td align="right">VAB</td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">BPM5</td>
-<td align="right">Preliminary</td>
-<td align="right">General</td>
-<td align="right">Consolidated</td>
-<td align="right">GDDS</td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right"></td>
-<td align="right">NA</td>
-<td align="right">2007</td>
-<td align="right">NA</td>
-<td align="right">KN</td>
-<td align="right">KN</td>
-<td align="right">St. Kitts and Nevis</td>
-<td align="right">St. Kitts and Nevis</td>
 </tr>
 </tbody>
 </table>
@@ -2170,15 +1836,13 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 #### Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
 
-    ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group)) + geom_density() + ggtitle("GDP by Country") 
+    ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("GDP by Income Group") 
 
-![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4-1.png)<!-- -->
+![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4_DensityPlotRaw-1.png)<!-- -->
 
-    #+ theme(axis.text.x=element_text(angle=90,hjust=1))
+    ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("Log Transformed GDP by Income Group ") 
 
-In this Bar Chart, we may observe the extreme outlier in the High
-Income: OECD caused by USA GDP. It is color-coded to highlight the
-differences between income groups.
+![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4_DensityPlotLogTransformed-1.png)<!-- -->
 
 ### Question 5
 
