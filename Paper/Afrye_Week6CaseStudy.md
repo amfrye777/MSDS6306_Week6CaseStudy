@@ -2182,16 +2182,16 @@ differences between income groups.
 
 #### Cut the GDP ranking into 5 separate quantile groups. Make a table versus Income.Group. How many countries are Lower middle income but among the 38 nations with highest GDP?
 
-    #Split Data into 5 equal quartiles
-    Products_M_Education$quartile <- ntile(Products_M_Education$Ranking, 5) 
+    #Split Data into 5 equal quantiles
+    Products_M_Education$quantile <- ntile(Products_M_Education$Ranking, 5) 
 
     #Count Records
-    nrow(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",])
+    nrow(Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",])
 
     ## [1] 5
 
     #View Records
-    formattable(Products_M_Education[Products_M_Education$quartile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quartile")])
+    formattable(Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quantile")])
 
 <table style="width:135%;">
 <colgroup>
@@ -2211,7 +2211,7 @@ differences between income groups.
 <th align="right">Income.Group</th>
 <th align="right">Ranking</th>
 <th align="right">USDollars</th>
-<th align="right">quartile</th>
+<th align="right">quantile</th>
 </tr>
 </thead>
 <tbody>
