@@ -25,7 +25,7 @@ str(Products)
 It was identified that of the 331 records loaded, that 141 of them contain blanks. After we remove the 141 records, we are left with 190 observations.
 
 With our blanks removed and columns trimmed, it is apparent that Note values are simply letters. When looking at the tail of the original file we see these Notes defined in the footer notes. Lets clean our dataset to append these notes to the appropriate records. 
-**(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)**
+*(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)*
 
 ```{r AppendProductNotes}
 ##Append Notes
@@ -50,7 +50,7 @@ Products$Ranking<-as.numeric(Products$Ranking)
 ```
 
 The products dataset is now clean!!! See below the first 10 records and final structure of our clean up data.
-**(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)**
+*(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)*
 
 ```{r ReviewHeadProductClean}
 formattable(head(Products,10))

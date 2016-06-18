@@ -1507,9 +1507,9 @@ observations.
 With our blanks removed and columns trimmed, it is apparent that Note
 values are simply letters. When looking at the tail of the original file
 we see these Notes defined in the footer notes. Lets clean our dataset
-to append these notes to the appropriate records. **(The first column
+to append these notes to the appropriate records. *(The first column
 displayed in table represents row numbers in full dataset, and can be
-ignored for this analysis)**
+ignored for this analysis)*
 
     ##Append Notes
     Products$Note[Products$Note=="a"]<-"Includes Former Spanish Sahara."
@@ -1601,9 +1601,9 @@ integer. Lets remove the comma's and convert to a numeric value.
     Products$Ranking<-as.numeric(Products$Ranking)
 
 The products dataset is now clean!!! See below the first 10 records and
-final structure of our clean up data. **(The first column displayed in
+final structure of our clean up data. *(The first column displayed in
 table represents row numbers in full dataset, and can be ignored for
-this analysis)**
+this analysis)*
 
     formattable(head(Products,10))
 
@@ -1739,8 +1739,8 @@ contain blanks. After we remove the 24 records, we are left with 210
 observations.
 
 The Education dataset is now clean!!! See below the first 10 records of
-our clean up data. **(The first column displayed in table represents row
-numbers in full dataset, and can be ignored for this analysis)**
+our clean up data. *(The first column displayed in table represents row
+numbers in full dataset, and can be ignored for this analysis)*
 
     formattable(head(Education,10))
 
