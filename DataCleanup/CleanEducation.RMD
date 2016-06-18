@@ -18,3 +18,10 @@ str(Education)
 ```
 
 It was identified that of the 234 records loaded, that 24 of them contain blanks. After we remove the 24 records, we are left with 210 observations.
+
+The Education dataset is now clean!!! See below the first 10 records of our clean up data.
+**(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)**
+
+```{r ReviewHeadEducationClean}
+formattable(head(Education,10))
+```

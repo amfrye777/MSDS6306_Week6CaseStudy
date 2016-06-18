@@ -1738,6 +1738,74 @@ It was identified that of the 234 records loaded, that 24 of them
 contain blanks. After we remove the 24 records, we are left with 210
 observations.
 
+The Education dataset is now clean!!! See below the first 10 records of
+our clean up data. **(The first column displayed in table represents row
+numbers in full dataset, and can be ignored for this analysis)**
+
+    formattable(head(Education,10))
+
+<table>
+<thead>
+<tr class="header">
+<th align="right">CountryCode</th>
+<th align="right">Long.Name</th>
+<th align="right">Income.Group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">ABW</td>
+<td align="right">Aruba</td>
+<td align="right">High income: nonOECD</td>
+</tr>
+<tr class="even">
+<td align="right">ADO</td>
+<td align="right">Principality of Andorra</td>
+<td align="right">High income: nonOECD</td>
+</tr>
+<tr class="odd">
+<td align="right">AFG</td>
+<td align="right">Islamic State of Afghanistan</td>
+<td align="right">Low income</td>
+</tr>
+<tr class="even">
+<td align="right">AGO</td>
+<td align="right">People's Republic of Angola</td>
+<td align="right">Lower middle income</td>
+</tr>
+<tr class="odd">
+<td align="right">ALB</td>
+<td align="right">Republic of Albania</td>
+<td align="right">Upper middle income</td>
+</tr>
+<tr class="even">
+<td align="right">ARE</td>
+<td align="right">United Arab Emirates</td>
+<td align="right">High income: nonOECD</td>
+</tr>
+<tr class="odd">
+<td align="right">ARG</td>
+<td align="right">Argentine Republic</td>
+<td align="right">Upper middle income</td>
+</tr>
+<tr class="even">
+<td align="right">ARM</td>
+<td align="right">Republic of Armenia</td>
+<td align="right">Lower middle income</td>
+</tr>
+<tr class="odd">
+<td align="right">ASM</td>
+<td align="right">American Samoa</td>
+<td align="right">Upper middle income</td>
+</tr>
+<tr class="even">
+<td align="right">ATG</td>
+<td align="right">Antigua and Barbuda</td>
+<td align="right">Upper middle income</td>
+</tr>
+</tbody>
+</table>
+
 Data Analysis & Questions
 =========================
 
