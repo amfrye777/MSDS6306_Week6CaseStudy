@@ -13,8 +13,14 @@ recently asked by our stakeholders.
 
 ### Required Packages
 
-This RMD requires the following R packages to run: \* downloader \*
-digest \* formattable \* plyr \* ggplot2 \* dplyr
+This RMD requires the following R packages to run:
+
+-   downloader
+-   digest
+-   formattable
+-   plyr
+-   ggplot2
+-   dplyr
 
 If you do not currently have installed any of these packages, please
 uncomment the install.packages lines below before knitting this file.
