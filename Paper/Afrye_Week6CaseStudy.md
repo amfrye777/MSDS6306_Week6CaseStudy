@@ -39,22 +39,6 @@ uncomment the install.packages lines below before knitting this file.
     library(ggplot2)
     library(dplyr)
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:plyr':
-    ## 
-    ##     arrange, count, desc, failwith, id, mutate, rename, summarise,
-    ##     summarize
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
 Data Load
 =========
 
@@ -1730,14 +1714,17 @@ this analysis)**
 ### Education Data Cleanup
 
 Similar to our cleanup in the Product Data, lets search for and remove
-any NA or Blank values found in CountryCode or Income.Group.
+any NA or Blank values found in CountryCode or Income.Group. In
+addition, the only columns necessary for this analysis are the
+"CountyCode", "Long.Name", and "Income.Group" columns. We will remove
+all others to simplify our research.
 
     ## Find and remove records with blank values for CountryCode or Income.Group
     nrow(EducationRaw[EducationRaw$CountryCode=='' | EducationRaw$Income.Group=='',])
 
     ## [1] 24
 
-    ## Load records without blank values into Education and remove unnecessary columns for this analysis
+    ## Load records without blank values into Education Data.Frame and remove unnecessary columns for this analysis
     Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',c("CountryCode", "Long.Name", "Income.Group")]
 
     str(Education)
@@ -1746,6 +1733,10 @@ any NA or Blank values found in CountryCode or Income.Group.
     ##  $ CountryCode : chr  "ABW" "ADO" "AFG" "AGO" ...
     ##  $ Long.Name   : chr  "Aruba" "Principality of Andorra" "Islamic State of Afghanistan" "People's Republic of Angola" ...
     ##  $ Income.Group: chr  "High income: nonOECD" "High income: nonOECD" "Low income" "Lower middle income" ...
+
+It was identified that of the 234 records loaded, that 24 of them
+contain blanks. After we remove the 24 records, we are left with 210
+observations.
 
 Data Analysis & Questions
 =========================

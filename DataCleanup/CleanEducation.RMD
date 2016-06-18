@@ -5,14 +5,16 @@ date: "June 12, 2016"
 output: md_document
 ---
 
-Similar to our cleanup in the Product Data, lets search for and remove any NA or Blank values found in CountryCode or Income.Group.
+Similar to our cleanup in the Product Data, lets search for and remove any NA or Blank values found in CountryCode or Income.Group. In addition, the only columns necessary for this analysis are the "CountyCode", "Long.Name", and "Income.Group" columns. We will remove all others to simplify our research.
 
 ```{R CleanEducationBlanks}
 ## Find and remove records with blank values for CountryCode or Income.Group
 nrow(EducationRaw[EducationRaw$CountryCode=='' | EducationRaw$Income.Group=='',])
 
-## Load records without blank values into Education and remove unnecessary columns for this analysis
+## Load records without blank values into Education Data.Frame and remove unnecessary columns for this analysis
 Education<-EducationRaw[EducationRaw$CountryCode!='' & EducationRaw$Income.Group!='',c("CountryCode", "Long.Name", "Income.Group")]
 
 str(Education)
 ```
+
+It was identified that of the 234 records loaded, that 24 of them contain blanks. After we remove the 24 records, we are left with 210 observations.
