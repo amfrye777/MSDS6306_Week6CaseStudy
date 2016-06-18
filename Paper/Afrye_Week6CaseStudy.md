@@ -1499,6 +1499,7 @@ our column headers.
 
     ## [1] 141
 
+    ## assign records without NA values to new data.frame called Products. Verify no NA values exist
     Products<-ProductsRaw[ProductsRaw$V1!='' & ProductsRaw$V2!='' ,c(1,2,4,5,6)]
     sum(!complete.cases(Products))
 
@@ -1515,10 +1516,16 @@ our column headers.
     ##  $ USDollars  : chr  " 16,244,600 " " 8,227,103 " " 5,959,718 " " 3,428,131 " ...
     ##  $ Note       : chr  "" "" "" "" ...
 
+It was identified that of the 331 records loaded, that 141 of them
+contain blanks. After we remove the 141 records, we are left with 190
+observations.
+
 With our blanks removed and columns trimmed, it is apparent that Note
 values are simply letters. When looking at the tail of the original file
 we see these Notes defined in the footer notes. Lets clean our dataset
-to append these notes to the appropriate records.
+to append these notes to the appropriate records. **(The first column
+displayed in table represents row numbers in full dataset, and can be
+ignored for this analysis)**
 
     ##Append Notes
     Products$Note[Products$Note=="a"]<-"Includes Former Spanish Sahara."
@@ -1600,14 +1607,116 @@ to append these notes to the appropriate records.
 </tbody>
 </table>
 
-Our USDollars and Ranking variables should be classified as an integer.
-Lets remove the comma's and convert to a numeric value.
+Finally, our USDollars and Ranking variables should be classified as an
+integer. Lets remove the comma's and convert to a numeric value.
 
     #Remove commas and convert USDollars to Numeric
     Products$USDollars<-as.numeric(gsub(",","",Products$USDollars))
 
     #Convert Ranking to Numeric
     Products$Ranking<-as.numeric(Products$Ranking)
+
+The products dataset is now clean!!! See below the first 10 records and
+final structure of our clean up data. **(The first column displayed in
+table represents row numbers in full dataset, and can be ignored for
+this analysis)**
+
+    formattable(head(Products,10))
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">CountryCode</th>
+<th align="right">Ranking</th>
+<th align="right">Economy</th>
+<th align="right">USDollars</th>
+<th align="right">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">6</td>
+<td align="right">USA</td>
+<td align="right">1</td>
+<td align="right">United States</td>
+<td align="right">16244600</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="right">CHN</td>
+<td align="right">2</td>
+<td align="right">China</td>
+<td align="right">8227103</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="right">JPN</td>
+<td align="right">3</td>
+<td align="right">Japan</td>
+<td align="right">5959718</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">9</td>
+<td align="right">DEU</td>
+<td align="right">4</td>
+<td align="right">Germany</td>
+<td align="right">3428131</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="right">FRA</td>
+<td align="right">5</td>
+<td align="right">France</td>
+<td align="right">2612878</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="right">GBR</td>
+<td align="right">6</td>
+<td align="right">United Kingdom</td>
+<td align="right">2471784</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="right">BRA</td>
+<td align="right">7</td>
+<td align="right">Brazil</td>
+<td align="right">2252664</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">13</td>
+<td align="right">RUS</td>
+<td align="right">8</td>
+<td align="right">Russian Federation</td>
+<td align="right">2014775</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">14</td>
+<td align="right">ITA</td>
+<td align="right">9</td>
+<td align="right">Italy</td>
+<td align="right">2014670</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">15</td>
+<td align="right">IND</td>
+<td align="right">10</td>
+<td align="right">India</td>
+<td align="right">1841710</td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
 
     str(Products)
 
