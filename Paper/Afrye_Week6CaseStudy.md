@@ -1836,13 +1836,24 @@ ranking of 91.91304 and average USDollars of $104,349.80(Million).
 
 #### Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
 
-    ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("GDP by Income Group") 
+    ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.7) + ggtitle("GDP by Income Group") 
 
 ![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4_DensityPlotRaw-1.png)<!-- -->
 
-    ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("Log Transformed GDP by Income Group ") 
+When plotting the density of GDP values by Income Group in its raw form,
+it is difficult to see any correlations between the groups due to
+extreme outliers and skewness in the data. Taking the logarithm on the
+GDP Dollar Value allows us to review the data more easily.
+
+    ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.7) + ggtitle("Log Transformed GDP by Income Group ") +  xlim(2, 18)
 
 ![](Afrye_Week6CaseStudy_files/figure-markdown_strict/Q4_DensityPlotLogTransformed-1.png)<!-- -->
+
+This density plot shows us the distribution shapes of the transformed
+logarithm GDP Dollar values. This provides us with an easier view of our
+data by removing skewness from outliers. We easily see that the High
+Income:OECD group contains the highest GDP dollar values, since their
+density curve is centered at a higher log(USDollar) value.
 
 ### Question 5
 

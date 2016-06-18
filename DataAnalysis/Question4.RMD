@@ -7,12 +7,16 @@ output: md_document
 
 ```{R Q4_DensityPlotRaw}
 
-ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("GDP by Income Group") 
+ggplot(data=Products_M_Education, aes(USDollars, fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.7) + ggtitle("GDP by Income Group") 
 
 ```
+
+When plotting the density of GDP values by Income Group in its raw form, it is difficult to see any correlations between the groups due to extreme outliers and skewness in the data. Taking the logarithm on the GDP Dollar Value allows us to review the data more easily.
 
 ```{R Q4_DensityPlotLogTransformed}
 
-ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.3) + ggtitle("Log Transformed GDP by Income Group ") 
+ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=Income.Group)) + geom_density(alpha = 0.7) + ggtitle("Log Transformed GDP by Income Group ") +  xlim(2, 18)
 
 ```
+
+This density plot shows us the distribution shapes of the transformed logarithm GDP Dollar values. This provides us with an easier view of our data by removing skewness from outliers. We easily see that the High Income:OECD group contains the highest GDP dollar values, since their density curve is centered at a higher log(USDollar) value.
