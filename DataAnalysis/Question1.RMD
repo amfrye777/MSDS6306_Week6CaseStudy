@@ -8,7 +8,10 @@ output: md_document
 ```{R Q1}
 ##Merge the Data
 Products_M_Education<-merge(Products,Education,by="CountryCode", all=TRUE)
-formattable(head(Products_M_Education))
+headPME<-head(Products_M_Education,10)
+row.names(headPME)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(headPME)
 
 ##How Many Records Did Not Match?
 nrow(Products_M_Education[Products_M_Education$Ranking=='' | Products_M_Education$Income.Group=='' | is.na(Products_M_Education$Ranking)==TRUE | is.na(Products_M_Education$Income.Group)==TRUE,])
@@ -18,6 +21,8 @@ nrow(Products_M_Education[Products_M_Education$Ranking!='' & Products_M_Educatio
 
 ##Remove non-Matches from Dataset
 Products_M_Education<-Products_M_Education[Products_M_Education$Ranking!='' & Products_M_Education$Income.Group!='' & is.na(Products_M_Education$Ranking)==FALSE & is.na(Products_M_Education$Income.Group)==FALSE,]
+
+str(Products_M_Education)
 ```
 
 After Merging the data, we find 22 records which did not match on CountryCode. If we remove the non-matches from the dataset, we are left with 189 records which Merged successfully.

@@ -19,4 +19,4 @@ ggplot(data=Products_M_Education, aes(log(USDollars), fill=Income.Group, colour=
 
 ```
 
-This density plot shows us the distribution shapes of the transformed logarithm GDP Dollar values. This provides us with an easier view of our data by removing skewness from outliers. We easily see that the High Income:OECD group contains the highest GDP dollar values, since their density curve is centered at a higher log(USDollar) value.
+This density plot shows us the distribution shapes of the transformed logarithm GDP Dollar values. This provides us with an easier view of our data by removing skewness from outliers. We can easily see that the High Income:OECD group contains the highest GDP dollar values, since their density curve is centered at a higher log(USDollar) value.

@@ -25,7 +25,6 @@ str(Products)
 It was identified that of the 331 records loaded, that 141 of them contain blanks. After we remove the 141 records, we are left with 190 observations.
 
 With our blanks removed and columns trimmed, it is apparent that Note values are simply letters. When looking at the tail of the original file we see these Notes defined in the footer notes. Lets clean our dataset to append these notes to the appropriate records. 
-*(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)*
 
 ```{r AppendProductNotes}
 ##Append Notes
@@ -35,7 +34,11 @@ Products$Note[Products$Note=="c"]<-"Covers mainland Tanzania only."
 Products$Note[Products$Note=="d"]<-"Data are for the area controlled by the government of the Republic of Cyprus."
 Products$Note[Products$Note=="e"]<-"Excludes Abkhazia and South Ossetia."
 Products$Note[Products$Note=="f"]<-"Excludes Transnistria."
-formattable(Products[Products$Note!="",])
+
+ProductsCleanNote<-Products[Products$Note!="",]
+row.names(ProductsCleanNote)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(ProductsCleanNote)
 ```
 
 Finally, our USDollars and Ranking variables should be classified as an integer. Lets remove the comma's and convert to a numeric value.
@@ -50,9 +53,11 @@ Products$Ranking<-as.numeric(Products$Ranking)
 ```
 
 The products dataset is now clean!!! See below the first 10 records and final structure of our clean up data.
-*(The first column displayed in table represents row numbers in full dataset, and can be ignored for this analysis)*
 
 ```{r ReviewHeadProductClean}
-formattable(head(Products,10))
+HeadPC<-head(Products,10)
+row.names(HeadPC)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(HeadPC)
 str(Products)
 ```

@@ -13,8 +13,12 @@ Products_M_Education$quantile <- ntile(Products_M_Education$Ranking, 5)
 nrow(Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",])
 
 #View Records
-formattable(Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quantile")])
+
+PME_LMI_20pct<-Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quantile")]
+row.names(PME_LMI_20pct)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(PME_LMI_20pct)
 
 ```
 
-There are 5 countries which are both classified as Lower middle income, and fall under the top 20% GDP ranking.
+There are 5 countries {EGY, THA, IDN, IND, & CHN} which are both classified as Lower middle income, and fall under the top 20% GDP ranking, or first of five quantiles.

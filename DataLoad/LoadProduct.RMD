@@ -60,6 +60,11 @@ if (SHAHASHProduct != "e6521fbc90c5a0991db48091c0d1967bbc856095") {
 Lets review the first 10 and records 232 - 252 of this file:
 
 ```{r HeadProductsRaw}
-formattable(head(ProductsRaw,10))
-formattable(ProductsRaw[232:252,])
+HeadPR<-head(ProductsRaw,10)
+TailPR<-ProductsRaw[232:252,]
+row.names(HeadPR)<-NULL #reset row.names, so they will not display in formattable output
+row.names(TailPR)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(HeadPR)
+formattable(TailPR)
 ```

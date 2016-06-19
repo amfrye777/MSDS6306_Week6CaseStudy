@@ -8,7 +8,12 @@ output: md_document
 ```{R Q2}
 ##Sort the data ascending by GDP Ranking
 Products_M_Education<-plyr::arrange(Products_M_Education,Products_M_Education$USDollars)
-formattable(Products_M_Education[13,])
+
+## Identify the 13th lowest ranked country
+PME13<-Products_M_Education[13,]
+row.names(PME13)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(PME13)
 ```
 
-The 13th lowest ranked country by USD is St. Kitts and Nevis (KNA) coming in at 178.
+The 13th lowest ranked country by USD is St. Kitts and Nevis (KNA) coming in at rank 178.

@@ -11,9 +11,14 @@ attach(Products_M_Education)
 P_M_E_AvgIncomeByGroup<-aggregate(Products_M_Education[,c(2,4)],by=list(Income.Group), FUN = mean, na.rm=TRUE)
 detach(Products_M_Education)
 
+#Order by USDollars Descending
 P_M_E_AvgIncomeByGroup<-plyr::arrange(P_M_E_AvgIncomeByGroup,desc(P_M_E_AvgIncomeByGroup$USDollars))
 
-formattable(P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",])
+#Filter results on only groups "High income: OECD" or "High income: nonOECD"
+PME_AVG_HI<-P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",]
+row.names(PME_AVG_HI)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(PME_AVG_HI)
 
 ```
 

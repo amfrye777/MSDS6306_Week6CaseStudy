@@ -129,7 +129,12 @@ lets re-load it.
 
 Lets review the first 10 and records 232 - 252 of this file:
 
-    formattable(head(ProductsRaw,10))
+    HeadPR<-head(ProductsRaw,10)
+    TailPR<-ProductsRaw[232:252,]
+    row.names(HeadPR)<-NULL #reset row.names, so they will not display in formattable output
+    row.names(TailPR)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(HeadPR)
 
 <table style="width:122%;">
 <colgroup>
@@ -282,11 +287,10 @@ Lets review the first 10 and records 232 - 252 of this file:
 </tbody>
 </table>
 
-    formattable(ProductsRaw[232:252,])
+    formattable(TailPR)
 
-<table style="width:279%;">
+<table style="width:272%;">
 <colgroup>
-<col width="6%" />
 <col width="6%" />
 <col width="175%" />
 <col width="5%" />
@@ -300,7 +304,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">V1</th>
 <th align="right">V2</th>
 <th align="right">V3</th>
@@ -315,7 +318,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">232</td>
 <td align="right">MNA</td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -328,7 +330,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">233</td>
 <td align="right">SAS</td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -341,7 +342,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">234</td>
 <td align="right">SSA</td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -354,7 +354,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">235</td>
 <td align="right">HIC</td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -367,7 +366,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">236</td>
 <td align="right">EMU</td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -380,7 +378,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">237</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -393,7 +390,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">238</td>
 <td align="right"></td>
 <td align="right">.. Not available.</td>
 <td align="right">NA</td>
@@ -406,7 +402,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">239</td>
 <td align="right"></td>
 <td align="right">Note: Rankings include only those economies with confirmed GDP estimates. Figures in italics are for 2011 or 2010.</td>
 <td align="right">NA</td>
@@ -419,7 +414,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">240</td>
 <td align="right"></td>
 <td align="right">a. Includes Former Spanish Sahara. b. Excludes South Sudan c. Covers mainland Tanzania only. d. Data are for the area</td>
 <td align="right">NA</td>
@@ -432,7 +426,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">241</td>
 <td align="right"></td>
 <td align="right">controlled by the government of the Republic of Cyprus. e. Excludes Abkhazia and South Ossetia. f. Excludes Transnistria.</td>
 <td align="right">NA</td>
@@ -445,7 +438,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">242</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -458,7 +450,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">243</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -471,7 +462,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">244</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -484,7 +474,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">245</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -497,7 +486,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">246</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -510,7 +498,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">247</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -523,7 +510,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">248</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -536,7 +522,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">249</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -549,7 +534,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">250</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -562,7 +546,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="even">
-<td align="left">251</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -575,7 +558,6 @@ Lets review the first 10 and records 232 - 252 of this file:
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">252</td>
 <td align="right"></td>
 <td align="right"></td>
 <td align="right">NA</td>
@@ -652,7 +634,12 @@ lets re-load it.
 
 Lets review the first and last 10 records of this file:
 
-    formattable(head(EducationRaw,10))
+    HeadER<-head(EducationRaw,10)
+    TailER<-tail(EducationRaw,10)
+    row.names(HeadER)<-NULL #reset row.names, so they will not display in formattable output
+    row.names(TailER)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(HeadER)
 
 <table style="width:1163%;">
 <colgroup>
@@ -1057,11 +1044,10 @@ Lets review the first and last 10 records of this file:
 </tbody>
 </table>
 
-    formattable(tail(EducationRaw,10))
+    formattable(TailER)
 
-<table style="width:1163%;">
+<table style="width:1156%;">
 <colgroup>
-<col width="6%" />
 <col width="18%" />
 <col width="47%" />
 <col width="29%" />
@@ -1096,7 +1082,6 @@ Lets review the first and last 10 records of this file:
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">CountryCode</th>
 <th align="right">Long.Name</th>
 <th align="right">Income.Group</th>
@@ -1132,7 +1117,6 @@ Lets review the first and last 10 records of this file:
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">225</td>
 <td align="right">VNM</td>
 <td align="right">Socialist Republic of Vietnam</td>
 <td align="right">Lower middle income</td>
@@ -1166,7 +1150,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Vietnam</td>
 </tr>
 <tr class="even">
-<td align="left">226</td>
 <td align="right">VUT</td>
 <td align="right">Republic of Vanuatu</td>
 <td align="right">Lower middle income</td>
@@ -1200,7 +1183,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Vanuatu</td>
 </tr>
 <tr class="odd">
-<td align="left">227</td>
 <td align="right">WBG</td>
 <td align="right">West Bank and Gaza</td>
 <td align="right">Lower middle income</td>
@@ -1234,7 +1216,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">West Bank and Gaza</td>
 </tr>
 <tr class="even">
-<td align="left">228</td>
 <td align="right">WLD</td>
 <td align="right">World</td>
 <td align="right"></td>
@@ -1268,7 +1249,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">World</td>
 </tr>
 <tr class="odd">
-<td align="left">229</td>
 <td align="right">WSM</td>
 <td align="right">Samoa</td>
 <td align="right">Lower middle income</td>
@@ -1302,7 +1282,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Samoa</td>
 </tr>
 <tr class="even">
-<td align="left">230</td>
 <td align="right">YEM</td>
 <td align="right">Republic of Yemen</td>
 <td align="right">Lower middle income</td>
@@ -1336,7 +1315,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Yemen</td>
 </tr>
 <tr class="odd">
-<td align="left">231</td>
 <td align="right">ZAF</td>
 <td align="right">Republic of South Africa</td>
 <td align="right">Upper middle income</td>
@@ -1370,7 +1348,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">South Africa</td>
 </tr>
 <tr class="even">
-<td align="left">232</td>
 <td align="right">ZAR</td>
 <td align="right">Democratic Republic of the Congo</td>
 <td align="right">Low income</td>
@@ -1404,7 +1381,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Dem. Rep. Congo</td>
 </tr>
 <tr class="odd">
-<td align="left">233</td>
 <td align="right">ZMB</td>
 <td align="right">Republic of Zambia</td>
 <td align="right">Low income</td>
@@ -1438,7 +1414,6 @@ Lets review the first and last 10 records of this file:
 <td align="right">Zambia</td>
 </tr>
 <tr class="even">
-<td align="left">234</td>
 <td align="right">ZWE</td>
 <td align="right">Republic of Zimbabwe</td>
 <td align="right">Low income</td>
@@ -1523,9 +1498,7 @@ observations.
 With our blanks removed and columns trimmed, it is apparent that Note
 values are simply letters. When looking at the tail of the original file
 we see these Notes defined in the footer notes. Lets clean our dataset
-to append these notes to the appropriate records. *(The first column
-displayed in table represents row numbers in full dataset, and can be
-ignored for this analysis)*
+to append these notes to the appropriate records.
 
     ##Append Notes
     Products$Note[Products$Note=="a"]<-"Includes Former Spanish Sahara."
@@ -1534,11 +1507,14 @@ ignored for this analysis)*
     Products$Note[Products$Note=="d"]<-"Data are for the area controlled by the government of the Republic of Cyprus."
     Products$Note[Products$Note=="e"]<-"Excludes Abkhazia and South Ossetia."
     Products$Note[Products$Note=="f"]<-"Excludes Transnistria."
-    formattable(Products[Products$Note!="",])
 
-<table style="width:176%;">
+    ProductsCleanNote<-Products[Products$Note!="",]
+    row.names(ProductsCleanNote)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(ProductsCleanNote)
+
+<table style="width:169%;">
 <colgroup>
-<col width="6%" />
 <col width="18%" />
 <col width="12%" />
 <col width="13%" />
@@ -1547,7 +1523,6 @@ ignored for this analysis)*
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">CountryCode</th>
 <th align="right">Ranking</th>
 <th align="right">Economy</th>
@@ -1557,7 +1532,6 @@ ignored for this analysis)*
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">67</td>
 <td align="right">MAR</td>
 <td align="right">62</td>
 <td align="right">Morocco</td>
@@ -1565,7 +1539,6 @@ ignored for this analysis)*
 <td align="right">Includes Former Spanish Sahara.</td>
 </tr>
 <tr class="even">
-<td align="left">78</td>
 <td align="right">SDN</td>
 <td align="right">73</td>
 <td align="right">Sudan</td>
@@ -1573,7 +1546,6 @@ ignored for this analysis)*
 <td align="right">Excludes South Sudan</td>
 </tr>
 <tr class="odd">
-<td align="left">100</td>
 <td align="right">TZA</td>
 <td align="right">95</td>
 <td align="right">Tanzania</td>
@@ -1581,7 +1553,6 @@ ignored for this analysis)*
 <td align="right">Covers mainland Tanzania only.</td>
 </tr>
 <tr class="even">
-<td align="left">107</td>
 <td align="right">CYP</td>
 <td align="right">102</td>
 <td align="right">Cyprus</td>
@@ -1589,7 +1560,6 @@ ignored for this analysis)*
 <td align="right">Data are for the area controlled by the government of the Republic of Cyprus.</td>
 </tr>
 <tr class="odd">
-<td align="left">119</td>
 <td align="right">GEO</td>
 <td align="right">114</td>
 <td align="right">Georgia</td>
@@ -1597,7 +1567,6 @@ ignored for this analysis)*
 <td align="right">Excludes Abkhazia and South Ossetia.</td>
 </tr>
 <tr class="even">
-<td align="left">146</td>
 <td align="right">MDA</td>
 <td align="right">141</td>
 <td align="right">Moldova</td>
@@ -1617,16 +1586,16 @@ integer. Lets remove the comma's and convert to a numeric value.
     Products$Ranking<-as.numeric(Products$Ranking)
 
 The products dataset is now clean!!! See below the first 10 records and
-final structure of our clean up data. *(The first column displayed in
-table represents row numbers in full dataset, and can be ignored for
-this analysis)*
+final structure of our clean up data.
 
-    formattable(head(Products,10))
+    HeadPC<-head(Products,10)
+    row.names(HeadPC)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(HeadPC)
 
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">CountryCode</th>
 <th align="right">Ranking</th>
 <th align="right">Economy</th>
@@ -1636,7 +1605,6 @@ this analysis)*
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">6</td>
 <td align="right">USA</td>
 <td align="right">1</td>
 <td align="right">United States</td>
@@ -1644,7 +1612,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="even">
-<td align="left">7</td>
 <td align="right">CHN</td>
 <td align="right">2</td>
 <td align="right">China</td>
@@ -1652,7 +1619,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="odd">
-<td align="left">8</td>
 <td align="right">JPN</td>
 <td align="right">3</td>
 <td align="right">Japan</td>
@@ -1660,7 +1626,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="even">
-<td align="left">9</td>
 <td align="right">DEU</td>
 <td align="right">4</td>
 <td align="right">Germany</td>
@@ -1668,7 +1633,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="odd">
-<td align="left">10</td>
 <td align="right">FRA</td>
 <td align="right">5</td>
 <td align="right">France</td>
@@ -1676,7 +1640,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="even">
-<td align="left">11</td>
 <td align="right">GBR</td>
 <td align="right">6</td>
 <td align="right">United Kingdom</td>
@@ -1684,7 +1647,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="odd">
-<td align="left">12</td>
 <td align="right">BRA</td>
 <td align="right">7</td>
 <td align="right">Brazil</td>
@@ -1692,7 +1654,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="even">
-<td align="left">13</td>
 <td align="right">RUS</td>
 <td align="right">8</td>
 <td align="right">Russian Federation</td>
@@ -1700,7 +1661,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="odd">
-<td align="left">14</td>
 <td align="right">ITA</td>
 <td align="right">9</td>
 <td align="right">Italy</td>
@@ -1708,7 +1668,6 @@ this analysis)*
 <td align="right"></td>
 </tr>
 <tr class="even">
-<td align="left">15</td>
 <td align="right">IND</td>
 <td align="right">10</td>
 <td align="right">India</td>
@@ -1755,10 +1714,12 @@ contain blanks. After we remove the 24 records, we are left with 210
 observations.
 
 The Education dataset is now clean!!! See below the first 10 records of
-our clean up data. *(The first column displayed in table represents row
-numbers in full dataset, and can be ignored for this analysis)*
+our clean up data.
 
-    formattable(head(Education,10))
+    HeadEC<-head(Education,10)
+    row.names(HeadEC)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(HeadEC)
 
 <table>
 <thead>
@@ -1834,7 +1795,10 @@ Stakeholders have requested answers to 5 core questions:
 
     ##Merge the Data
     Products_M_Education<-merge(Products,Education,by="CountryCode", all=TRUE)
-    formattable(head(Products_M_Education))
+    headPME<-head(Products_M_Education,10)
+    row.names(headPME)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(headPME)
 
 <table style="width:157%;">
 <colgroup>
@@ -1912,6 +1876,42 @@ Stakeholders have requested answers to 5 core questions:
 <td align="right">United Arab Emirates</td>
 <td align="right">High income: nonOECD</td>
 </tr>
+<tr class="odd">
+<td align="right">ARG</td>
+<td align="right">26</td>
+<td align="right">Argentina</td>
+<td align="right">475502</td>
+<td align="right"></td>
+<td align="right">Argentine Republic</td>
+<td align="right">Upper middle income</td>
+</tr>
+<tr class="even">
+<td align="right">ARM</td>
+<td align="right">133</td>
+<td align="right">Armenia</td>
+<td align="right">9951</td>
+<td align="right"></td>
+<td align="right">Republic of Armenia</td>
+<td align="right">Lower middle income</td>
+</tr>
+<tr class="odd">
+<td align="right">ASM</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">American Samoa</td>
+<td align="right">Upper middle income</td>
+</tr>
+<tr class="even">
+<td align="right">ATG</td>
+<td align="right">172</td>
+<td align="right">Antigua and Barbuda</td>
+<td align="right">1134</td>
+<td align="right"></td>
+<td align="right">Antigua and Barbuda</td>
+<td align="right">Upper middle income</td>
+</tr>
 </tbody>
 </table>
 
@@ -1928,6 +1928,17 @@ Stakeholders have requested answers to 5 core questions:
     ##Remove non-Matches from Dataset
     Products_M_Education<-Products_M_Education[Products_M_Education$Ranking!='' & Products_M_Education$Income.Group!='' & is.na(Products_M_Education$Ranking)==FALSE & is.na(Products_M_Education$Income.Group)==FALSE,]
 
+    str(Products_M_Education)
+
+    ## 'data.frame':    189 obs. of  7 variables:
+    ##  $ CountryCode : chr  "ABW" "AFG" "AGO" "ALB" ...
+    ##  $ Ranking     : num  161 105 60 125 32 26 133 172 12 27 ...
+    ##  $ Economy     : chr  "Aruba" "Afghanistan" "Angola" "Albania" ...
+    ##  $ USDollars   : num  2584 20497 114147 12648 348595 ...
+    ##  $ Note        : chr  "" "" "" "" ...
+    ##  $ Long.Name   : chr  "Aruba" "Islamic State of Afghanistan" "People's Republic of Angola" "Republic of Albania" ...
+    ##  $ Income.Group: chr  "High income: nonOECD" "Low income" "Lower middle income" "Upper middle income" ...
+
 After Merging the data, we find 22 records which did not match on
 CountryCode. If we remove the non-matches from the dataset, we are left
 with 189 records which Merged successfully.
@@ -1938,11 +1949,15 @@ with 189 records which Merged successfully.
 
     ##Sort the data ascending by GDP Ranking
     Products_M_Education<-plyr::arrange(Products_M_Education,Products_M_Education$USDollars)
-    formattable(Products_M_Education[13,])
 
-<table style="width:147%;">
+    ## Identify the 13th lowest ranked country
+    PME13<-Products_M_Education[13,]
+    row.names(PME13)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(PME13)
+
+<table style="width:142%;">
 <colgroup>
-<col width="5%" />
 <col width="18%" />
 <col width="12%" />
 <col width="29%" />
@@ -1953,7 +1968,6 @@ with 189 records which Merged successfully.
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">CountryCode</th>
 <th align="right">Ranking</th>
 <th align="right">Economy</th>
@@ -1965,7 +1979,6 @@ with 189 records which Merged successfully.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">13</td>
 <td align="right">KNA</td>
 <td align="right">178</td>
 <td align="right">St. Kitts and Nevis</td>
@@ -1978,7 +1991,7 @@ with 189 records which Merged successfully.
 </table>
 
 The 13th lowest ranked country by USD is St. Kitts and Nevis (KNA)
-coming in at 178.
+coming in at rank 178.
 
 ### Question 3
 
@@ -1988,14 +2001,18 @@ coming in at 178.
     P_M_E_AvgIncomeByGroup<-aggregate(Products_M_Education[,c(2,4)],by=list(Income.Group), FUN = mean, na.rm=TRUE)
     detach(Products_M_Education)
 
+    #Order by USDollars Descending
     P_M_E_AvgIncomeByGroup<-plyr::arrange(P_M_E_AvgIncomeByGroup,desc(P_M_E_AvgIncomeByGroup$USDollars))
 
-    formattable(P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",])
+    #Filter results on only groups "High income: OECD" or "High income: nonOECD"
+    PME_AVG_HI<-P_M_E_AvgIncomeByGroup[P_M_E_AvgIncomeByGroup$Group.1=="High income: OECD"|P_M_E_AvgIncomeByGroup$Group.1=="High income: nonOECD",]
+    row.names(PME_AVG_HI)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(PME_AVG_HI)
 
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">Group.1</th>
 <th align="right">Ranking</th>
 <th align="right">USDollars</th>
@@ -2003,13 +2020,11 @@ coming in at 178.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="right">High income: OECD</td>
 <td align="right">32.96667</td>
 <td align="right">1483917.1</td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
 <td align="right">High income: nonOECD</td>
 <td align="right">91.91304</td>
 <td align="right">104349.8</td>
@@ -2041,7 +2056,7 @@ GDP Dollar Value allows us to review the data more easily.
 
 This density plot shows us the distribution shapes of the transformed
 logarithm GDP Dollar values. This provides us with an easier view of our
-data by removing skewness from outliers. We easily see that the High
+data by removing skewness from outliers. We can easily see that the High
 Income:OECD group contains the highest GDP dollar values, since their
 density curve is centered at a higher log(USDollar) value.
 
@@ -2058,11 +2073,14 @@ density curve is centered at a higher log(USDollar) value.
     ## [1] 5
 
     #View Records
-    formattable(Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quantile")])
 
-<table style="width:135%;">
+    PME_LMI_20pct<-Products_M_Education[Products_M_Education$quantile==1 & Products_M_Education$Income.Group=="Lower middle income",c("CountryCode","Long.Name","Income.Group", "Ranking", "USDollars", "quantile")]
+    row.names(PME_LMI_20pct)<-NULL #reset row.names, so they will not display in formattable output
+
+    formattable(PME_LMI_20pct)
+
+<table style="width:128%;">
 <colgroup>
-<col width="6%" />
 <col width="18%" />
 <col width="38%" />
 <col width="29%" />
@@ -2072,7 +2090,6 @@ density curve is centered at a higher log(USDollar) value.
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="right">CountryCode</th>
 <th align="right">Long.Name</th>
 <th align="right">Income.Group</th>
@@ -2083,7 +2100,6 @@ density curve is centered at a higher log(USDollar) value.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">152</td>
 <td align="right">EGY</td>
 <td align="right">Arab Republic of Egypt</td>
 <td align="right">Lower middle income</td>
@@ -2092,7 +2108,6 @@ density curve is centered at a higher log(USDollar) value.
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">159</td>
 <td align="right">THA</td>
 <td align="right">Kingdom of Thailand</td>
 <td align="right">Lower middle income</td>
@@ -2101,7 +2116,6 @@ density curve is centered at a higher log(USDollar) value.
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">174</td>
 <td align="right">IDN</td>
 <td align="right">Republic of Indonesia</td>
 <td align="right">Lower middle income</td>
@@ -2110,7 +2124,6 @@ density curve is centered at a higher log(USDollar) value.
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">180</td>
 <td align="right">IND</td>
 <td align="right">Republic of India</td>
 <td align="right">Lower middle income</td>
@@ -2119,7 +2132,6 @@ density curve is centered at a higher log(USDollar) value.
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">188</td>
 <td align="right">CHN</td>
 <td align="right">People's Republic of China</td>
 <td align="right">Lower middle income</td>
@@ -2130,8 +2142,9 @@ density curve is centered at a higher log(USDollar) value.
 </tbody>
 </table>
 
-There are 5 countries which are both classified as Lower middle income,
-and fall under the top 20% GDP ranking.
+There are 5 countries {EGY, THA, IDN, IND, & CHN} which are both
+classified as Lower middle income, and fall under the top 20% GDP
+ranking, or first of five quantiles.
 
 Conclusion
 ==========

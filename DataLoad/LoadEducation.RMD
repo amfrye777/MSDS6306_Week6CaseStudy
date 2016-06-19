@@ -60,6 +60,13 @@ if (SHAHASHEducation != "aa8a8e7da032757672d3522d645d89f128a98cb2") {
 Lets review the first and last 10 records of this file:
 
 ```{r HeadEducationRaw}
-formattable(head(EducationRaw,10))
-formattable(tail(EducationRaw,10))
+HeadER<-head(EducationRaw,10)
+TailER<-tail(EducationRaw,10)
+row.names(HeadER)<-NULL #reset row.names, so they will not display in formattable output
+row.names(TailER)<-NULL #reset row.names, so they will not display in formattable output
+
+formattable(HeadER)
+formattable(TailER)
+
+
 ```
