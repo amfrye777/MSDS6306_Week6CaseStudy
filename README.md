@@ -48,7 +48,8 @@ FILE TREE STRUCTURE DEFINED
     ##    |__Afrye_Week6CaseStudy.RMD
     ##    |__Afrye_Week6CaseStudy_files
     ##       |__figure-markdown_strict
-    ##          |__Q4-1.png
+    ##          |__Q4_DensityPlotLogTransformed-1.png
+    ##          |__Q4_DensityPlotRaw-1.png
     ## -- README.md
     ## -- README.rmd
     ## -- RResources
